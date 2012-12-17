@@ -21,6 +21,11 @@ public class Person extends AggregateRoot {
         return person;
     }
 
+    @Override
+    public Guid getGuid() {
+        return guid;
+    }
+
     private Person() {
     }
 }
