@@ -48,7 +48,7 @@ public class RegisterPersonCommandHandler implements CommandHandler<RegisterPers
     }
 
     private Birthday birthday(RegisterPerson command) {
-        return Birthday.valueOf(command.getDateOfBirth());
+        return Birthday.valueOf(command.getBirthday());
     }
 
     private Gender gender(RegisterPerson command) {

@@ -3,16 +3,16 @@ package org.example.write.infrastructure;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 
+import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 
 public class StringMatchers {
     public static Matcher<String> nullOrEmpty() {
-        return new TypeSafeMatcher<String>() {
+        return new BaseMatcher<String>() {
             @Override
-            protected boolean matchesSafely(String string) {
-                return isNullOrEmpty(string);
+            public boolean matches(Object string) {
+                return isNullOrEmpty((String) string);
             }
 
             @Override

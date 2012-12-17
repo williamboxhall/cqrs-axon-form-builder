@@ -5,7 +5,7 @@ public class RegisterPerson {
     private String title;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
+    private String birthday;
     private String gender;
 
     public String getGuid() {
@@ -40,12 +40,12 @@ public class RegisterPerson {
         this.lastName = lastName;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getGender() {
