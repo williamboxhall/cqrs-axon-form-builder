@@ -10,7 +10,7 @@ public class PersonalInformation {
     private final String firstName;
     private final String lastName;
     private final Birthday birthday;
-    private final Gender gender;
+    private Gender gender;
 
     public PersonalInformation(String title, String firstName, String lastName, Birthday birthday, Gender gender) {
         this.title = checkThatArgument(title, not(nullOrEmpty()), "title");
@@ -18,5 +18,13 @@ public class PersonalInformation {
         this.lastName = checkThatArgument(lastName, not(nullOrEmpty()), "lastName");
         this.birthday = checkThatArgument(birthday, not(nullValue()), "birthday");
         this.gender = checkThatArgument(gender, not(nullValue()), "gender");
+    }
+
+    Gender getGender() {
+        return gender;
+    }
+
+    void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

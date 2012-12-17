@@ -23,7 +23,8 @@ public class EventBasedRepositoryTest {
 
     @Before
     public void setUp() {
-        repository = new EventBasedRepository<AggregateRoot>(eventStore);
+        repository = new EventBasedRepository<AggregateRoot>(eventStore) {
+        };
     }
 
     @Test

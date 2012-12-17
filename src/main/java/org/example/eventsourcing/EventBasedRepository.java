@@ -1,24 +1,50 @@
 package org.example.eventsourcing;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
-@Component
-public class EventBasedRepository<T extends AggregateRoot> implements Repository<T> {
+public abstract class EventBasedRepository<T extends AggregateRoot> implements Repository<T> {
     private final EventStore eventStore;
+    private final Class aggregateType;
 
-    @Autowired
     public EventBasedRepository(EventStore eventStore) {
         this.eventStore = eventStore;
+        this.aggregateType = aggregateType();
     }
 
     @Override
     public void save(T aggregateRoot) {
+        // potentially decorate with meta (application name, timestamps etc.) here
         eventStore.saveEvents(aggregateRoot.getGuid(), aggregateRoot.getChanges());
     }
 
     @Override
     public T getById(Guid guid) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        T aggregateRoot = createAggregateRootViaReflection();
+        aggregateRoot.loadFromHistory(eventStore.getEvents(guid));
+        return aggregateRoot;
+    }
+
+    private T createAggregateRootViaReflection() {
+        Constructor[] cons = aggregateType.getDeclaredConstructors();
+        cons[0].setAccessible(true);
+        try {
+            return (T) cons[0].newInstance(null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Class aggregateType() {
+        Type genType = getClass().getGenericSuperclass();
+        if (genType instanceof ParameterizedType) {
+            Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+
+            if ((params != null) && (params.length >= 1)) {
+                return (Class) params[0];
+            }
+        }
+        return null;
     }
 }

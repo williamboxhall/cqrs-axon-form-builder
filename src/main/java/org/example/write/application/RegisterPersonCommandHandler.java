@@ -2,7 +2,7 @@ package org.example.write.application;
 
 import org.example.eventsourcing.CommandHandler;
 import org.example.eventsourcing.Guid;
-import org.example.eventsourcing.GuidRegistrar;
+import org.example.eventsourcing.GuidRegister;
 import org.example.eventsourcing.Repository;
 import org.example.write.domain.Birthday;
 import org.example.write.domain.Gender;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegisterPersonCommandHandler implements CommandHandler<RegisterPerson> {
     private final Repository<Person> personRepository;
-    private final GuidRegistrar guidRegistrar;
+    private final GuidRegister guidRegister;
 
     @Autowired
-    public RegisterPersonCommandHandler(Repository<Person> personRepository, GuidRegistrar guidRegistrar) {
+    public RegisterPersonCommandHandler(Repository<Person> personRepository, GuidRegister guidRegister) {
         this.personRepository = personRepository;
-        this.guidRegistrar = guidRegistrar;
+        this.guidRegister = guidRegister;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RegisterPersonCommandHandler implements CommandHandler<RegisterPers
     }
 
     private Guid guidFrom(RegisterPerson command) {
-        return guidRegistrar.register(command.getGuid());
+        return guidRegister.register(command.getGuid());
     }
 
     private PersonalInformation personalInformationFrom(RegisterPerson command) {

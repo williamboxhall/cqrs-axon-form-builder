@@ -1,14 +1,19 @@
 package org.example.eventsourcing;
 
-import static java.lang.String.format;
-
 import java.util.List;
 
+import com.google.common.collect.ArrayListMultimap;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EventStore {
+    private final ArrayListMultimap<Guid, Event> store = ArrayListMultimap.create();
+
     public void saveEvents(Guid guid, List<Event> events) {
-        System.out.println(format("Saved %s %s", guid, events));
+        store.get(guid).addAll(events);
+    }
+
+    public List<Event> getEvents(Guid guid) {
+        return store.get(guid);
     }
 }

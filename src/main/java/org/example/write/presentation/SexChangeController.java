@@ -1,7 +1,7 @@
 package org.example.write.presentation;
 
 import org.example.eventsourcing.CommandHandler;
-import org.example.write.application.RegisterPerson;
+import org.example.write.application.ChangeSex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/persons")
-public class RegisterPersonController {
-    private final CommandHandler<RegisterPerson> commandHandler;
+public class SexChangeController {
+    private final CommandHandler<ChangeSex> commandHandler;
 
     @Autowired
-    public RegisterPersonController(@Qualifier("registerPersonCommandHandler") CommandHandler<RegisterPerson> commandHandler) {
+    public SexChangeController(@Qualifier("changeSexCommandHandler") CommandHandler<ChangeSex> commandHandler) {
         this.commandHandler = commandHandler;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/changesex", method = RequestMethod.PUT)
     @ResponseBody
-    public void register(@RequestBody RegisterPerson registerPerson) {
-        commandHandler.handle(registerPerson);
+    public void register(@RequestBody ChangeSex changeSex) {
+        commandHandler.handle(changeSex);
     }
 }
