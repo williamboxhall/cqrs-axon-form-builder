@@ -10,14 +10,9 @@
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="org.example.command"/>
+    <context:component-scan base-package="org.example.write.application"/>
     <context:component-scan base-package="org.example.write.domain"/>
     <context:component-scan base-package="org.example.write.infrastructure"/>
-    <aop:config proxy-target-class="true"/>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <import resource="hibernate.xml"/>
-    <import resource="grepo.xml"/>
-    <import resource="validation.xml"/>
+    <context:component-scan base-package="org.example.eventsourcing"/>
 
 </beans>

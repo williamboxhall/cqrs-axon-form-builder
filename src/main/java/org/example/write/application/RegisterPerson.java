@@ -1,4 +1,4 @@
-package org.example.write.command;
+package org.example.write.application;
 
 public class RegisterPerson {
     private String guid;
