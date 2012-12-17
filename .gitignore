@@ -1,0 +1,6 @@
+.project  
+.classpath
+cqrs-eventsourcing-webapp.iml
+.settings/
+.idea/
+target/

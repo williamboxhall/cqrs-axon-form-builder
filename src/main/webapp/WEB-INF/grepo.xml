@@ -1,0 +1,12 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:gquery="http://grepo.codehaus.org/schema/query-hibernate"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://grepo.codehaus.org/schema/query-hibernate
+       http://grepo.codehaus.org/schema/grepo-query-hibernate.xsd">
+    <import resource="classpath:META-INF/grepo/grepo-query-hibernate-default.cfg.xml"/>
+    <bean id="repositoryFactory"
+          class="org.example.write.infrastructure.EnrichedReadWriteHibernateRepositoryFactoryBean" abstract="true">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <gquery:repository-scan base-package="org.example.write.domain" factory="repositoryFactory"/>
+</beans>
