@@ -24,11 +24,11 @@ public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command
         return convert(bodyOf(request), toCommandTypeFrom(request));
     }
 
-    private Class<Command> toCommandTypeFrom(HttpServletRequest request) {
+    public static Class<Command> toCommandTypeFrom(HttpServletRequest request) {
         return commandTypeFor(nameFrom(request));
     }
 
-    private String nameFrom(HttpServletRequest request) {
+    private static String nameFrom(HttpServletRequest request) {
         return request.getRequestURI().split("/")[1];
     }
 
@@ -40,7 +40,7 @@ public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command
         }
     }
 
-    private Class<Command> commandTypeFor(String commandName) {
+    private static Class<Command> commandTypeFor(String commandName) {
         try {
             return (Class<Command>) Class.forName("org.example.write.application." + commandName);
         } catch (ClassNotFoundException e) {

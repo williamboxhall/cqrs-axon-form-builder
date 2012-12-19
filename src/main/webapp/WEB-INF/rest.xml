@@ -29,7 +29,12 @@
     </bean>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="customArgumentResolver" ref="commandArgumentResolver"/>
+        <property name="customArgumentResolvers">
+            <list>
+                <ref bean="commandArgumentResolver"/>
+                <ref bean="commandHandlerArgumentResolver"/>
+            </list>
+        </property>
     </bean>
 
 </beans>
