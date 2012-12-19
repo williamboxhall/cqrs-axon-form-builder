@@ -1,6 +1,6 @@
 package org.example.events;
 
-import org.example.eventsourcing.Event;
+import org.example.eventsourcing.domain.Event;
 import org.example.write.domain.Gender;
 
 public class SexChanged extends Event {

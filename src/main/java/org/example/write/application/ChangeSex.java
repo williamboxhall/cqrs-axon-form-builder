@@ -1,6 +1,8 @@
 package org.example.write.application;
 
-public class ChangeSex {
+import org.example.eventsourcing.domain.Command;
+
+public class ChangeSex implements Command {
     private String guid;
     private String gender;
 

@@ -4,8 +4,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.example.events.PersonRegistered;
 import org.example.events.SexChanged;
-import org.example.eventsourcing.AggregateRoot;
-import org.example.eventsourcing.Guid;
+import org.example.eventsourcing.domain.AggregateRoot;
+import org.example.eventsourcing.domain.Guid;
 
 public class Person extends AggregateRoot {
     private Guid guid;

@@ -1,8 +1,10 @@
-package org.example.eventsourcing;
+package org.example.eventsourcing.domain;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+
+import org.example.eventsourcing.infrastructure.EventStore;
 
 public abstract class EventBasedRepository<T extends AggregateRoot> implements Repository<T> {
     private final EventStore eventStore;

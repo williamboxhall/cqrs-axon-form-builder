@@ -1,4 +1,4 @@
-package org.example.eventsourcing;
+package org.example.eventsourcing.domain;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

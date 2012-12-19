@@ -6,7 +6,7 @@
     <display-name>Spring Web MVC Application</display-name>
 
     <servlet>
-        <servlet-name>rest</servlet-name>
+        <servlet-name>commands</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
         <init-param>
@@ -16,8 +16,8 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>rest</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
+        <servlet-name>commands</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
     <context-param>

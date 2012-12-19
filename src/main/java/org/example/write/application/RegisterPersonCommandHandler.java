@@ -1,9 +1,9 @@
 package org.example.write.application;
 
-import org.example.eventsourcing.CommandHandler;
-import org.example.eventsourcing.Guid;
-import org.example.eventsourcing.GuidRegister;
-import org.example.eventsourcing.Repository;
+import org.example.eventsourcing.domain.CommandHandler;
+import org.example.eventsourcing.domain.Guid;
+import org.example.eventsourcing.domain.GuidRegister;
+import org.example.eventsourcing.domain.Repository;
 import org.example.write.domain.Birthday;
 import org.example.write.domain.Gender;
 import org.example.write.domain.Person;

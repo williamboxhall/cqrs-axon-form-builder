@@ -1,8 +1,10 @@
-package org.example.eventsourcing;
+package org.example.eventsourcing.infrastructure;
 
 import java.util.List;
 
 import com.google.common.collect.ArrayListMultimap;
+import org.example.eventsourcing.domain.Event;
+import org.example.eventsourcing.domain.Guid;
 import org.springframework.stereotype.Component;
 
 @Component

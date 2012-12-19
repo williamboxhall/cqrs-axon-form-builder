@@ -1,4 +1,4 @@
-package org.example.eventsourcing;
+package org.example.eventsourcing.domain;
 
 import static org.springframework.util.ReflectionUtils.findMethod;
 

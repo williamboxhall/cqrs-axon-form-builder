@@ -10,8 +10,9 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
     <context:annotation-config/>
     <context:component-scan base-package="org.example.write.presentation"/>
-    <mvc:annotation-driven/>
+    <context:component-scan base-package="org.example.eventsourcing.presentation"/>
 
+    <!-- TODO remove this entire block? -->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="mediaTypes">
             <map>
@@ -26,4 +27,9 @@
             </list>
         </property>
     </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="customArgumentResolver" ref="commandArgumentResolver"/>
+    </bean>
+
 </beans>

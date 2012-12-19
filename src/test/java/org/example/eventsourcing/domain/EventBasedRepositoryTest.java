@@ -1,10 +1,11 @@
-package org.example.eventsourcing;
+package org.example.eventsourcing.domain;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import org.example.eventsourcing.infrastructure.EventStore;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

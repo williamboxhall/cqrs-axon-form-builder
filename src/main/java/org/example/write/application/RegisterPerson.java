@@ -1,6 +1,8 @@
 package org.example.write.application;
 
-public class RegisterPerson {
+import org.example.eventsourcing.domain.Command;
+
+public class RegisterPerson implements Command {
     private String guid;
     private String title;
     private String firstName;
