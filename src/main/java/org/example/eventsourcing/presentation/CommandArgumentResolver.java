@@ -3,6 +3,7 @@ package org.example.eventsourcing.presentation;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
+import com.google.common.io.CharStreams;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.example.eventsourcing.domain.Command;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,23 @@ public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command
 
     @Override
     public Command resolveArgument(HttpServletRequest request) {
-        return convert(bodyOf(request), commandTypeFrom(request));
+        return convert(bodyOf(request), toCommandTypeFrom(request));
     }
 
-    private String bodyOf(HttpServletRequest request) {
-        return "{\"guid\":\"123\", \"title\":\"Mr\", \"firstName\":\"Will\", \"lastName\":\"Box\", \"birthday\":\"1920-01-01\", \"gender\":\"male\"}";
-    }
-
-    private Class<Command> commandTypeFrom(HttpServletRequest request) {
+    private Class<Command> toCommandTypeFrom(HttpServletRequest request) {
         return commandTypeFor(nameFrom(request));
     }
 
     private String nameFrom(HttpServletRequest request) {
         return request.getRequestURI().split("/")[1];
+    }
+
+    private String bodyOf(HttpServletRequest request) {
+        try {
+            return CharStreams.toString(request.getReader());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Class<Command> commandTypeFor(String commandName) {
