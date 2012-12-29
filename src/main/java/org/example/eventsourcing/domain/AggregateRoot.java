@@ -9,9 +9,12 @@ import com.google.common.collect.Lists;
 
 
 public abstract class AggregateRoot {
+    private final Guid guid;
     private List<Event> changes = Lists.newArrayList();
 
-    public abstract Guid getGuid();
+    public AggregateRoot(Guid guid) {
+        this.guid = guid;
+    }
 
     List<Event> getChanges() {
         return changes;
@@ -42,5 +45,9 @@ public abstract class AggregateRoot {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Guid getGuid() {
+        return guid;
     }
 }

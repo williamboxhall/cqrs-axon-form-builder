@@ -1,23 +1,39 @@
 package org.example.events;
 
 import org.example.eventsourcing.domain.Event;
-import org.example.eventsourcing.domain.Guid;
-import org.example.write.domain.PersonalInformation;
 
 public class PersonRegistered extends Event {
-    private final Guid guid;
-    private final PersonalInformation personalInformation;
+    private final String title;
+    private final String firstName;
+    private final String lastName;
+    private final String birthday;
+    private final String gender;
 
-    public PersonRegistered(Guid guid, PersonalInformation personalInformation) {
-        this.guid = guid;
-        this.personalInformation = personalInformation;
+    public PersonRegistered(String title, String firstName, String lastName, String birthday, String gender) {
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.gender = gender;
     }
 
-    public Guid getGuid() {
-        return guid;
+    public String getTitle() {
+        return title;
     }
 
-    public PersonalInformation getPersonalInformation() {
-        return personalInformation;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }

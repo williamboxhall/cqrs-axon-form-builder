@@ -23,16 +23,16 @@ public abstract class EventBasedRepository<T extends AggregateRoot> implements R
 
     @Override
     public T getById(Guid guid) {
-        T aggregateRoot = createAggregateRootViaReflection();
+        T aggregateRoot = createAggregateRootViaReflection(guid);
         aggregateRoot.loadFromHistory(eventStore.getEvents(guid));
         return aggregateRoot;
     }
 
-    private T createAggregateRootViaReflection() {
+    private T createAggregateRootViaReflection(Guid guid) {
         Constructor[] cons = aggregateType.getDeclaredConstructors();
         cons[0].setAccessible(true);
         try {
-            return (T) cons[0].newInstance(null);
+            return (T) cons[0].newInstance(guid);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

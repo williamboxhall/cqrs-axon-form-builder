@@ -1,16 +1,15 @@
 package org.example.events;
 
 import org.example.eventsourcing.domain.Event;
-import org.example.write.domain.Gender;
 
 public class SexChanged extends Event {
-    private final Gender gender;
+    private final String gender;
 
-    public SexChanged(Gender gender) {
+    public SexChanged(String gender) {
         this.gender = gender;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 }

@@ -6,7 +6,7 @@ import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode
 public class Guid {
     private final String guid;
 
-    Guid(String guid) {
+    public Guid(String guid) {
         this.guid = guid;
     }
 

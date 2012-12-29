@@ -1,4 +1,4 @@
 package org.example.eventsourcing.domain;
 
-public class Event {
+public interface Query<T> {
 }
