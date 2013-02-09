@@ -9,11 +9,9 @@ import org.example.eventsourcing.domain.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command> {
     private final ObjectMapper jsonMapper;
 
-    @Autowired
     public CommandArgumentResolver(ObjectMapper jsonMapper) {
         super(Command.class);
         this.jsonMapper = jsonMapper;

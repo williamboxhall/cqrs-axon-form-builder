@@ -11,7 +11,7 @@
         <load-on-startup>1</load-on-startup>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/rest.xml</param-value>
+            <param-value>/WEB-INF/spring/webBindings.xml</param-value>
         </init-param>
     </servlet>
 
@@ -22,7 +22,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/application.xml</param-value>
+        <param-value>/WEB-INF/spring/application.xml</param-value>
     </context-param>
 
     <listener>
