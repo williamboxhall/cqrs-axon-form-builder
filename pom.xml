@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example</groupId>
-    <artifactId>cqrs-eventsourcing-webapp</artifactId>
+    <artifactId>cqrs-axon-webapp</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Global Directory</name>
@@ -226,6 +226,11 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-core</artifactId>
+            <version>2.0</version>
         </dependency>
     </dependencies>
 

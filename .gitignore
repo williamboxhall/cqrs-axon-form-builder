@@ -1,6 +1,6 @@
 .project  
 .classpath
-cqrs-eventsourcing-webapp.iml
+cqrs-axon-webapp.iml
 .settings/
 .idea/
 target/

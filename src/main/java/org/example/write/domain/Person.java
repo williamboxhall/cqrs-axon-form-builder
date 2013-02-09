@@ -5,27 +5,46 @@ import static org.example.write.infrastructure.MatcherPreconditions.checkThatArg
 import static org.example.write.infrastructure.StringMatchers.nullOrEmpty;
 import static org.hamcrest.Matchers.not;
 
+import org.axonframework.commandhandling.annotation.CommandHandler;
+import org.axonframework.eventhandling.annotation.EventHandler;
+import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
+import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.example.events.PersonRegistered;
 import org.example.events.SexChanged;
-import org.example.eventsourcing.domain.AggregateRoot;
-import org.example.eventsourcing.domain.Guid;
+import org.example.write.application.ChangeSex;
+import org.example.write.application.RegisterPerson;
 
-public class Person extends AggregateRoot {
+public class Person extends AbstractAnnotatedAggregateRoot<String> {
+    @AggregateIdentifier
+    private String guid;
     private Gender gender;
 
-    private void apply(PersonRegistered personRegistered) {
+    private Person() {
+    }
+
+    @EventHandler
+    private void on(PersonRegistered personRegistered) {
+        this.guid = personRegistered.getGuid();
         this.gender = Gender.valueOfIgnoreCase(personRegistered.getGender());
     }
 
-    private void apply(SexChanged sexChanged) {
+    @EventHandler
+    private void on(SexChanged sexChanged) {
         this.gender = Gender.valueOfIgnoreCase(sexChanged.getGender());
     }
 
-    public static Person register(Guid guid, String title, String firstName, String lastName, String birthday, String gender) {
-        Person person = new Person(guid);
-        person.applyChange(new PersonRegistered(valid(title, "title"), valid(firstName, "firstName"),
-                valid(lastName, "lastName"), validBirthday(birthday), validGender(gender)));
-        return person;
+    @CommandHandler
+    public Person(RegisterPerson registerPerson) {
+        apply(new PersonRegistered(registerPerson.getGuid(), valid(registerPerson.getTitle(), "title"), valid(registerPerson.getFirstName(), "firstName"),
+                valid(registerPerson.getLastName(), "lastName"), validBirthday(registerPerson.getBirthday()), validGender(registerPerson.getGender())));
+    }
+
+    @CommandHandler
+    public void changeSex(ChangeSex changeSex) {
+        if (!this.gender.canChangeTo(Gender.valueOfIgnoreCase(changeSex.getGender()))) {
+            throw new IllegalArgumentException(format("Gender %s can not change to %s", this.gender, gender));
+        }
+        apply(new SexChanged(changeSex.getGender()));
     }
 
     private static String validGender(String gender) {
@@ -38,18 +57,7 @@ public class Person extends AggregateRoot {
         return birthday;
     }
 
-    public void changeSex(String gender) {
-        if (!this.gender.canChangeTo(Gender.valueOfIgnoreCase(gender))) {
-            throw new IllegalArgumentException(format("Gender %s can not change to %s", this.gender, gender));
-        }
-        applyChange(new SexChanged(gender));
-    }
-
     private static String valid(String value, String name) {
         return checkThatArgument(value, not(nullOrEmpty()), name);
-    }
-
-    private Person(Guid guid) {
-        super(guid);
     }
 }
