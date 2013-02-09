@@ -17,7 +17,6 @@ public class Fixtures {
         return org.axonframework.test.Fixtures.newGivenWhenThenFixture(aggregateType);
     }
 
-
     public static Matcher<Throwable> withMessage(final String message, final Class<? extends Throwable> type) {
         return new TypeSafeMatcher<Throwable>() {
             @Override
