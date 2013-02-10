@@ -1,4 +1,4 @@
-package org.example.write.application;
+package org.example.write.commands;
 
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 import org.example.eventsourcing.domain.Command;

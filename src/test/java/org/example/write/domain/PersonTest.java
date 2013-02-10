@@ -1,7 +1,7 @@
 package org.example.write.domain;
 
-import org.example.write.application.ChangeSex;
-import org.example.write.application.RegisterPerson;
+import org.example.write.commands.ChangeSex;
+import org.example.write.commands.RegisterPerson;
 import org.junit.Test;
 
 public class PersonTest {

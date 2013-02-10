@@ -40,7 +40,7 @@ public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command
 
     private static Class<Command> commandTypeFor(String commandName) {
         try {
-            return (Class<Command>) Class.forName("org.example.write.application." + commandName);
+            return (Class<Command>) Class.forName("org.example.write.commands." + commandName);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
