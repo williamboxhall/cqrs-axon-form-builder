@@ -27,21 +27,21 @@ public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command
     }
 
     private static String nameFrom(HttpServletRequest request) {
-        return request.getRequestURI().split("/")[1];
-    }
-
-    private String bodyOf(HttpServletRequest request) {
-        try {
-            return CharStreams.toString(request.getReader());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return request.getRequestURI().split("/write/")[1];
     }
 
     private static Class<Command> commandTypeFor(String commandName) {
         try {
             return (Class<Command>) Class.forName("org.example.write.commands." + commandName);
         } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String bodyOf(HttpServletRequest request) {
+        try {
+            return CharStreams.toString(request.getReader());
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

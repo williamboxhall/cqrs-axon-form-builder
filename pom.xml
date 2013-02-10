@@ -237,6 +237,21 @@
             <artifactId>axon-test</artifactId>
             <version>2.0</version>
         </dependency>
+                <dependency>
+            <groupId>org.codehaus.grepo</groupId>
+            <artifactId>grepo-core</artifactId>
+            <version>${grepo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.grepo</groupId>
+            <artifactId>grepo-query-commons</artifactId>
+            <version>${grepo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.grepo</groupId>
+            <artifactId>grepo-query-hibernate</artifactId>
+            <version>${grepo.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

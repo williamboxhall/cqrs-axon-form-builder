@@ -12,10 +12,6 @@
 
     <bean id="jsonMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
 
-    <bean id="commandArgumentResolver" class="org.example.eventsourcing.presentation.CommandArgumentResolver" >
-        <constructor-arg ref="jsonMapper"/>
-    </bean>
-
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="mediaTypes">
             <map>
@@ -35,8 +31,14 @@
         <property name="customArgumentResolvers">
             <list>
                 <ref bean="commandArgumentResolver"/>
+                <ref bean="queryArgumentResolver"/>
             </list>
         </property>
     </bean>
 
+    <bean id="commandArgumentResolver" class="org.example.eventsourcing.presentation.CommandArgumentResolver">
+        <constructor-arg ref="jsonMapper"/>
+    </bean>
+
+    <bean id="queryArgumentResolver" class="org.example.eventsourcing.presentation.QueryArgumentResolver" />
 </beans>
