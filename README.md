@@ -1,4 +1,3 @@
-cqrs-eventsourcing-webapp
+cqrs-axon-webapp
 =========================
-dfgdfg
-I toy webapp with a minimalist implementation of CQRS with event sourcing
+A toy webapp with a minimalist implementation of CQRS/event-sourcing using the Axon Framework
