@@ -12,17 +12,17 @@ import org.example.write.services.PaymentService;
 import org.junit.Test;
 
 public class ChangeSexTest {
-    private static final String ID = "foo";
+    private static final String PERSON_ID = "foo";
 
     @Test
     public void sexChangesWhenDifferentToPrevious() {
         forA(Person.class)
                 .registerInjectableResource(mock(PaymentService.class))
                 .registerInjectableResource(mock(CatalogService.class))
-                .given(new PersonRegistered(ID, null, null, null, null, "male"))
-                .when(new ChangeSex(ID, "female"))
+                .given(new PersonRegistered(PERSON_ID, null, null, null, null, "male"))
+                .when(new ChangeSex(PERSON_ID, "female"))
                 .expectVoidReturnType()
-                .expectEvents(new SexChanged("female"));
+                .expectEvents(new SexChanged(PERSON_ID, "female"));
     }
 
     @Test
@@ -30,8 +30,8 @@ public class ChangeSexTest {
         forA(Person.class)
                 .registerInjectableResource(mock(PaymentService.class))
                 .registerInjectableResource(mock(CatalogService.class))
-                .given(new PersonRegistered(ID, null, null, null, null, "male"))
-                .when(new ChangeSex(ID, "male"))
+                .given(new PersonRegistered(PERSON_ID, null, null, null, null, "male"))
+                .when(new ChangeSex(PERSON_ID, "male"))
                 .expectException(withMessage("Gender MALE can not change to MALE", IllegalArgumentException.class));
     }
 }

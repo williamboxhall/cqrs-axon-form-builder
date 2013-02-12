@@ -1,5 +1,6 @@
 package org.example.eventsourcing.presentation;
 
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.PropertyUtils;
@@ -24,12 +25,15 @@ public class QueryArgumentResolver extends AbstractWebArgumentResolver<Query> {
     }
 
     private Query populateFromRequest(Query query, HttpServletRequest request) {
+        Map<String, String> queryParameters = request.getParameterMap();
         try {
-            PropertyUtils.setProperty(query, "guid", request.getParameter("guid"));
-            return query;
+            for (String key : queryParameters.keySet()) {
+                PropertyUtils.setProperty(query, key, request.getParameter(key));
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return query;
     }
 
     public static Class<Query> typeFrom(HttpServletRequest request) {

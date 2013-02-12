@@ -5,23 +5,23 @@ import org.example.eventsourcing.domain.Command;
 
 public class ChangeSex implements Command {
     @TargetAggregateIdentifier
-    private String guid;
+    private String personId;
     private String gender;
 
     public ChangeSex() {
     }
 
-    public ChangeSex(String guid, String gender) {
-        this.guid = guid;
+    public ChangeSex(String personId, String gender) {
+        this.personId = personId;
         this.gender = gender;
     }
 
-    public String getGuid() {
-        return guid;
+    public String getPersonId() {
+        return personId;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getGender() {

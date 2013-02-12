@@ -20,7 +20,7 @@ import org.example.write.services.PaymentService;
 
 public class Person extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
-    private String guid;
+    private String personId;
     private Gender gender;
 
     private Person() {
@@ -28,7 +28,7 @@ public class Person extends AbstractAnnotatedAggregateRoot<String> {
 
     @EventHandler
     private void on(PersonRegistered personRegistered) {
-        this.guid = personRegistered.getGuid();
+        this.personId = personRegistered.getPersonId();
         this.gender = Gender.valueOfIgnoreCase(personRegistered.getGender());
     }
 
@@ -39,7 +39,7 @@ public class Person extends AbstractAnnotatedAggregateRoot<String> {
 
     @CommandHandler
     public Person(RegisterPerson registerPerson) {
-        apply(new PersonRegistered(registerPerson.getGuid(), valid(registerPerson.getTitle(), "title"), valid(registerPerson.getFirstName(), "firstName"),
+        apply(new PersonRegistered(registerPerson.getPersonId(), valid(registerPerson.getTitle(), "title"), valid(registerPerson.getFirstName(), "firstName"),
                 valid(registerPerson.getLastName(), "lastName"), validBirthday(registerPerson.getBirthday()), validGender(registerPerson.getGender())));
     }
 
@@ -48,14 +48,14 @@ public class Person extends AbstractAnnotatedAggregateRoot<String> {
         if (!this.gender.canChangeTo(Gender.valueOfIgnoreCase(changeSex.getGender()))) {
             throw new IllegalArgumentException(format("Gender %s can not change to %s", this.gender, gender));
         }
-        apply(new SexChanged(changeSex.getGender()));
+        apply(new SexChanged(personId, changeSex.getGender()));
     }
 
     @CommandHandler
     public void buyThing(BuyThing buyThing, CatalogService catalogService, PaymentService paymentService) {
         double price = catalogService.priceFor(buyThing.getThing());
         paymentService.pay(price);
-        apply(new ThingBought(buyThing.getThing(), price));
+        apply(new ThingBought(personId, buyThing.getThing(), price));
     }
 
     private static String validGender(String gender) {

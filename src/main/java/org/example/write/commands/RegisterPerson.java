@@ -5,7 +5,7 @@ import org.example.eventsourcing.domain.Command;
 
 public class RegisterPerson implements Command {
     @TargetAggregateIdentifier
-    private String guid;
+    private String personId;
     private String title;
     private String firstName;
     private String lastName;
@@ -15,8 +15,8 @@ public class RegisterPerson implements Command {
     public RegisterPerson() {
     }
 
-    public RegisterPerson(String guid, String title, String firstName, String lastName, String birthday, String gender) {
-        this.guid = guid;
+    public RegisterPerson(String personId, String title, String firstName, String lastName, String birthday, String gender) {
+        this.personId = personId;
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,12 +24,12 @@ public class RegisterPerson implements Command {
         this.gender = gender;
     }
 
-    public String getGuid() {
-        return guid;
+    public String getPersonId() {
+        return personId;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getTitle() {

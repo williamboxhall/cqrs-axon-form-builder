@@ -6,19 +6,21 @@ import javax.persistence.Id;
 @Entity
 public class PersonProfile {
     @Id
-    private String guid;
+    private String personId;
     private String title;
     private String firstName;
     private String lastName;
     private String birthday;
     private String gender;
+    private int numberOfThingsBought;
+    private double spent;
 
-    public String getGuid() {
-        return guid;
+    public String getPersonId() {
+        return personId;
     }
 
-    public PersonProfile guid(String guid) {
-        this.guid = guid;
+    public PersonProfile personId(String guid) {
+        this.personId = guid;
         return this;
     }
 
@@ -65,5 +67,19 @@ public class PersonProfile {
     public PersonProfile gender(String gender) {
         this.gender = gender;
         return this;
+    }
+
+    public PersonProfile spent(double cost) {
+        this.numberOfThingsBought++;
+        this.spent += cost;
+        return this;
+    }
+
+    public int getNumberOfThingsBought() {
+        return numberOfThingsBought;
+    }
+
+    public String getSpent() {
+        return "$" + spent;
     }
 }

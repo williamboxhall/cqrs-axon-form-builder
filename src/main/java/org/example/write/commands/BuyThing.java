@@ -5,7 +5,7 @@ import org.example.eventsourcing.domain.Command;
 
 public class BuyThing implements Command {
     @TargetAggregateIdentifier
-    private String guid;
+    private String personId;
     private String thing;
 
     public BuyThing() {
@@ -15,12 +15,12 @@ public class BuyThing implements Command {
         this.thing = thing;
     }
 
-    public String getGuid() {
-        return guid;
+    public String getPersonId() {
+        return personId;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getThing() {

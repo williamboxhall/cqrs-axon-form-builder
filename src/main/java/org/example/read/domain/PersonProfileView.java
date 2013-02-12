@@ -1,9 +1,9 @@
 package org.example.read.domain;
 
-import org.axonframework.domain.MetaData;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.example.events.PersonRegistered;
 import org.example.events.SexChanged;
+import org.example.events.ThingBought;
 import org.example.eventsourcing.domain.QueryHandler;
 import org.example.read.queries.PersonProfileQuery;
 import org.springframework.beans.BeansException;
@@ -17,13 +17,13 @@ public class PersonProfileView implements BeanFactoryAware, QueryHandler<PersonP
 
     @Override
     public PersonProfile handle(PersonProfileQuery query) {
-        return repository().get(query.getGuid());
+        return repository().get(query.getPersonId());
     }
 
     @EventHandler
     private void on(PersonRegistered event) {
         repository().save(new PersonProfile()
-                .guid(event.getGuid())
+                .personId(event.getPersonId())
                 .title(event.getTitle())
                 .firstName(event.getFirstName())
                 .lastName(event.getLastName())
@@ -32,8 +32,13 @@ public class PersonProfileView implements BeanFactoryAware, QueryHandler<PersonP
     }
 
     @EventHandler
-    private void on(SexChanged sexChanged, MetaData metaData) {
-        repository().save(repository().get((String) metaData.get("guid")).gender(sexChanged.getGender()));
+    private void on(SexChanged sexChanged) {
+        repository().update(repository().get(sexChanged.getPersonId()).gender(sexChanged.getGender()));
+    }
+
+    @EventHandler
+    private void on(ThingBought thingBought) {
+        repository().update(repository().get(thingBought.getPersonId()).spent(thingBought.getCost()));
     }
 
     private PersonProfileRepository repository() {
