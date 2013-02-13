@@ -2,5 +2,6 @@
     <persistence-unit name="eventStore" transaction-type="RESOURCE_LOCAL">
         <class>org.axonframework.eventstore.jpa.DomainEventEntry</class>
         <class>org.axonframework.eventstore.jpa.SnapshotEventEntry</class>
+        <class>org.example.read.domain.PersonProfile</class>
     </persistence-unit>
 </persistence>

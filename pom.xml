@@ -11,8 +11,7 @@
 
     <properties>
         <jetty.version>7.2.0.v20101020</jetty.version>
-        <spring.version>3.0.5.RELEASE</spring.version>
-        <grepo.version>1.5.3</grepo.version>
+        <spring.version>3.1.1.RELEASE</spring.version>
         <oval.version>1.61</oval.version>
         <hibernate.version>3.6.10.Final</hibernate.version>
     </properties>
@@ -209,21 +208,6 @@
             <version>1.7.1</version>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.grepo</groupId>
-            <artifactId>grepo-core</artifactId>
-            <version>${grepo.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.grepo</groupId>
-            <artifactId>grepo-query-commons</artifactId>
-            <version>${grepo.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.grepo</groupId>
-            <artifactId>grepo-query-hibernate</artifactId>
-            <version>${grepo.version}</version>
-        </dependency>
-        <dependency>
             <groupId>net.sf.oval</groupId>
             <artifactId>oval</artifactId>
             <version>${oval.version}</version>
@@ -254,24 +238,14 @@
             <version>2.0</version>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.grepo</groupId>
-            <artifactId>grepo-core</artifactId>
-            <version>${grepo.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.grepo</groupId>
-            <artifactId>grepo-query-commons</artifactId>
-            <version>${grepo.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.grepo</groupId>
-            <artifactId>grepo-query-hibernate</artifactId>
-            <version>${grepo.version}</version>
-        </dependency>
-        <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.0.2.RELEASE</version>
         </dependency>
     </dependencies>
 

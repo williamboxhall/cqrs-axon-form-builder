@@ -7,23 +7,21 @@ import org.example.events.SexChanged;
 import org.example.events.ThingBought;
 import org.example.eventsourcing.domain.QueryHandler;
 import org.example.read.queries.PersonProfileQuery;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonProfileView implements BeanFactoryAware, ReplayAware, QueryHandler<PersonProfile, PersonProfileQuery>{
-    private BeanFactory beanFactory;
+public class PersonProfileView implements ReplayAware, QueryHandler<PersonProfile, PersonProfileQuery>{
+    private PersonProfileRepository repository;
 
     @Override
     public PersonProfile handle(PersonProfileQuery query) {
-        return repository().get(query.getPersonId());
+        return repository.findOne(query.getPersonId());
     }
 
     @EventHandler
     private void on(PersonRegistered event) {
-        repository().save(new PersonProfile()
+        repository.save(new PersonProfile()
                 .personId(event.getPersonId())
                 .title(event.getTitle())
                 .firstName(event.getFirstName())
@@ -34,28 +32,25 @@ public class PersonProfileView implements BeanFactoryAware, ReplayAware, QueryHa
 
     @EventHandler
     private void on(SexChanged sexChanged) {
-        repository().update(repository().get(sexChanged.getPersonId()).gender(sexChanged.getGender()));
+        repository.save(repository.findOne(sexChanged.getPersonId()).gender(sexChanged.getGender()));
     }
 
     @EventHandler
     private void on(ThingBought thingBought) {
-        repository().update(repository().get(thingBought.getPersonId()).spent(thingBought.getCost()));
+        repository.save(repository.findOne(thingBought.getPersonId()).spent(thingBought.getCost()));
+    }
+
+    @Autowired
+    public void setPersonProfileRepository(PersonProfileRepository personProfileRepository) {
+        this.repository = personProfileRepository;
     }
 
     @Override
     public void beforeReplay() {
+        repository.deleteAll();
     }
 
     @Override
     public void afterReplay() {
-    }
-
-    private PersonProfileRepository repository() {
-        return beanFactory.getBean(PersonProfileRepository.class);
-    }
-
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        this.beanFactory = beanFactory;
     }
 }

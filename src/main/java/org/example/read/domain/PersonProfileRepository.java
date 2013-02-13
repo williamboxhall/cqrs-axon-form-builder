@@ -1,8 +1,8 @@
 package org.example.read.domain;
 
-import org.codehaus.grepo.query.hibernate.repository.ReadWriteHibernateRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonProfileRepository extends ReadWriteHibernateRepository<PersonProfile, String> {
+public interface PersonProfileRepository extends CrudRepository<PersonProfile, String> {
 }

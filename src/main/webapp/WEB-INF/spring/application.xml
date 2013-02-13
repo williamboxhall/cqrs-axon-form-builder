@@ -11,6 +11,6 @@
 
     <import resource="axon.xml"/>
     <import resource="hibernate.xml"/>
-    <import resource="grepo.xml"/>
+    <import resource="springDataRepositories.xml"/>
 
 </beans>
