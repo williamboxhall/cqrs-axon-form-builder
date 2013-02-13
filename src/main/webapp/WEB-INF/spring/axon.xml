@@ -8,15 +8,11 @@
 
     <axon:annotation-config/>
 
-    <axon:command-bus id="commandBus" transaction-manager="transactionManager" />
+    <axon:command-bus id="commandBus" transaction-manager="transactionManager"/>
 
     <axon:event-bus id="eventBus"/>
     <axon:jpa-event-store id="eventStore"/>
 
-
-
-
-    <!--
     <axon:cluster id="cluster" default="true">
         <axon:replay-config/>
         <bean id="replayingCluster" class="org.axonframework.eventhandling.replay.ReplayingCluster">
@@ -27,11 +23,19 @@
             </constructor-arg>
             <constructor-arg ref="eventStore"/>
             <constructor-arg>
+                <bean class="org.axonframework.unitofwork.SpringTransactionManager">
+                    <constructor-arg ref="transactionManager"/>
+                    <constructor-arg>
+                        <bean class="org.springframework.transaction.support.DefaultTransactionDefinition"/>
+                    </constructor-arg>
+                </bean>
+            </constructor-arg>
+            <constructor-arg value="0"/>
+            <constructor-arg>
                 <bean class="org.axonframework.eventhandling.replay.BackloggingIncomingMessageHandler"/>
             </constructor-arg>
         </bean>
     </axon:cluster>
--->
 
     <axon:event-sourcing-repository id="personRepository"
                                     aggregate-type="org.example.write.domain.Person"/>
