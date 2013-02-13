@@ -14,6 +14,7 @@
         <spring.version>3.0.5.RELEASE</spring.version>
         <grepo.version>1.5.3</grepo.version>
         <oval.version>1.61</oval.version>
+        <hibernate.version>3.6.10.Final</hibernate.version>
     </properties>
 
     <dependencies>
@@ -127,9 +128,24 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>3.3.2.GA</version>
+            <version>${hibernate.version}</version>
             <type>jar</type>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>cglib</groupId>
+                    <artifactId>cglib</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>dom4j</groupId>
+                    <artifactId>dom4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -237,7 +253,7 @@
             <artifactId>axon-test</artifactId>
             <version>2.0</version>
         </dependency>
-                <dependency>
+        <dependency>
             <groupId>org.codehaus.grepo</groupId>
             <artifactId>grepo-core</artifactId>
             <version>${grepo.version}</version>
@@ -251,6 +267,11 @@
             <groupId>org.codehaus.grepo</groupId>
             <artifactId>grepo-query-hibernate</artifactId>
             <version>${grepo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
 

@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:axon="http://www.axonframework.org/schema/core"
+       xmlns:axon="http://www.axonframework.org/schema/core" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
+        http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-    <axon:annotation-config />
+    <axon:annotation-config/>
 
-    <axon:command-bus id="commandBus"/>
+    <axon:command-bus id="commandBus" transaction-manager="transactionManager" />
+
     <axon:event-bus id="eventBus"/>
+    <axon:jpa-event-store id="eventStore"/>
+
+
+
+
+    <!--
+    <axon:cluster id="cluster" default="true">
+        <axon:replay-config/>
+        <bean id="replayingCluster" class="org.axonframework.eventhandling.replay.ReplayingCluster">
+            <constructor-arg>
+                <bean id="simpleCluster" class="org.axonframework.eventhandling.SimpleCluster">
+                    <constructor-arg value="simpleCluster"/>
+                </bean>
+            </constructor-arg>
+            <constructor-arg ref="eventStore"/>
+            <constructor-arg>
+                <bean class="org.axonframework.eventhandling.replay.BackloggingIncomingMessageHandler"/>
+            </constructor-arg>
+        </bean>
+    </axon:cluster>
+-->
 
     <axon:event-sourcing-repository id="personRepository"
                                     aggregate-type="org.example.write.domain.Person"/>
@@ -19,7 +41,6 @@
                                     repository="personRepository"
                                     command-bus="commandBus"/>
 
-    <axon:filesystem-event-store id="eventStore" base-dir="events"/>
 
     <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
         <property name="commandBus" ref="commandBus"/>
