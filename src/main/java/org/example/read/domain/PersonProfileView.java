@@ -1,6 +1,7 @@
 package org.example.read.domain;
 
 import org.axonframework.eventhandling.annotation.EventHandler;
+import org.axonframework.eventhandling.replay.ReplayAware;
 import org.example.events.PersonRegistered;
 import org.example.events.SexChanged;
 import org.example.events.ThingBought;
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonProfileView implements BeanFactoryAware, QueryHandler<PersonProfile, PersonProfileQuery>{
+public class PersonProfileView implements BeanFactoryAware, ReplayAware, QueryHandler<PersonProfile, PersonProfileQuery>{
     private BeanFactory beanFactory;
 
     @Override
@@ -39,6 +40,14 @@ public class PersonProfileView implements BeanFactoryAware, QueryHandler<PersonP
     @EventHandler
     private void on(ThingBought thingBought) {
         repository().update(repository().get(thingBought.getPersonId()).spent(thingBought.getCost()));
+    }
+
+    @Override
+    public void beforeReplay() {
+    }
+
+    @Override
+    public void afterReplay() {
     }
 
     private PersonProfileRepository repository() {
