@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/read/replayAll")
+@RequestMapping("/view/replayAll")
 public class ReplayAllController {
     private final ReplayingCluster replayingCluster;
 
