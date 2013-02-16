@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.google.common.io.CharStreams;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.example.eventsourcing.domain.Command;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command> {
     private final ObjectMapper jsonMapper;
@@ -27,7 +25,7 @@ public class CommandArgumentResolver extends AbstractWebArgumentResolver<Command
     }
 
     private static String nameFrom(HttpServletRequest request) {
-        return request.getRequestURI().split("/write/")[1];
+        return request.getRequestURI().split("/perform/")[1];
     }
 
     private static Class<Command> commandTypeFor(String commandName) {

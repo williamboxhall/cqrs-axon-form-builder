@@ -7,6 +7,6 @@
     http://www.springframework.org/schema/data/jpa
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-  <repositories base-package="org.example.read.domain" />
+  <repositories base-package="org.example.read.views" />
 
 </beans:beans>

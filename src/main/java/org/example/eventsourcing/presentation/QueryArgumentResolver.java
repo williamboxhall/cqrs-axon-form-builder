@@ -41,7 +41,7 @@ public class QueryArgumentResolver extends AbstractWebArgumentResolver<Query> {
     }
 
     private static String nameFrom(HttpServletRequest request) {
-        return request.getRequestURI().split("/read/")[1];
+        return request.getRequestURI().split("/view/")[1];
     }
 
     private static Class<Query> typeFor(String name) {

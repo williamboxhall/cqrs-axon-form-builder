@@ -1,9 +1,9 @@
 package org.example.read.queries;
 
 import org.example.eventsourcing.domain.Query;
-import org.example.read.domain.PersonProfile;
+import org.example.read.views.PersonProfileView;
 
-public class PersonProfileQuery implements Query<PersonProfile> {
+public class PersonProfile implements Query<PersonProfileView> {
     private String personId;
 
     public String getPersonId() {

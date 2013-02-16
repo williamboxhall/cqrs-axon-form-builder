@@ -1,10 +1,10 @@
-package org.example.read.domain;
+package org.example.read.views;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class PersonProfile {
+public class PersonProfileView {
     @Id
     private String personId;
     private String title;
@@ -19,7 +19,7 @@ public class PersonProfile {
         return personId;
     }
 
-    public PersonProfile personId(String guid) {
+    public PersonProfileView personId(String guid) {
         this.personId = guid;
         return this;
     }
@@ -28,7 +28,7 @@ public class PersonProfile {
         return title;
     }
 
-    public PersonProfile title(String title) {
+    public PersonProfileView title(String title) {
         this.title = title;
         return this;
     }
@@ -37,7 +37,7 @@ public class PersonProfile {
         return firstName;
     }
 
-    public PersonProfile firstName(String firstName) {
+    public PersonProfileView firstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -46,7 +46,7 @@ public class PersonProfile {
         return lastName;
     }
 
-    public PersonProfile lastName(String lastName) {
+    public PersonProfileView lastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -55,7 +55,7 @@ public class PersonProfile {
         return birthday;
     }
 
-    public PersonProfile birthday(String birthday) {
+    public PersonProfileView birthday(String birthday) {
         this.birthday = birthday;
         return this;
     }
@@ -64,12 +64,12 @@ public class PersonProfile {
         return gender;
     }
 
-    public PersonProfile gender(String gender) {
+    public PersonProfileView gender(String gender) {
         this.gender = gender;
         return this;
     }
 
-    public PersonProfile spent(double cost) {
+    public PersonProfileView spent(double cost) {
         this.numberOfThingsBought++;
         this.spent += cost;
         return this;

@@ -1,8 +1,8 @@
-package org.example.read.domain;
+package org.example.read.views;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonProfileRepository extends CrudRepository<PersonProfile, String> {
+public interface PersonProfileScreen extends CrudRepository<PersonProfileView, String> {
 }
