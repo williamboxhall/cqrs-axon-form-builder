@@ -6,6 +6,7 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
         <property name="persistenceUnitName" value="eventStore"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -15,6 +16,11 @@
             </bean>
         </property>
         <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitPostProcessors">
+            <list>
+                <ref bean="persistenceUnitEntityScanner "/>
+            </list>
+        </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -46,7 +52,18 @@
         </property>
         <property name="packagesToScan">
             <list>
-                <value>org.example</value>
+                <value>org.example.read.views</value>
+                <value>org.axonframework.eventstore.jpa</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="persistenceUnitEntityScanner "
+          class="org.example.eventsourcing.infrastructure.PersistenceUnitEntityScanner">
+        <property name="packagesToScan">
+            <list>
+                <value>org.example.read.views</value>
+                <value>org.axonframework.eventstore.jpa</value>
             </list>
         </property>
     </bean>

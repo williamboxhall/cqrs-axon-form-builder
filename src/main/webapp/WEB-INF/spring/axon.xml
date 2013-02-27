@@ -11,7 +11,7 @@
     <axon:command-bus id="commandBus" transaction-manager="transactionManager"/>
 
     <axon:event-bus id="eventBus"/>
-    <axon:jpa-event-store id="eventStore"/>
+    <axon:jpa-event-store id="eventStore" data-source="dataSource"/>
 
     <axon:cluster id="cluster" default="true">
         <axon:replay-config/>

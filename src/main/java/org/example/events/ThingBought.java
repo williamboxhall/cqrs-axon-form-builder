@@ -1,6 +1,8 @@
 package org.example.events;
 
-public class ThingBought {
+import org.example.eventsourcing.domain.Event;
+
+public class ThingBought extends Event {
     private final String personId;
     private final String thing;
     private final double cost;
