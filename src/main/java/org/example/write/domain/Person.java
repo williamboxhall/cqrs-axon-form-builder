@@ -11,6 +11,7 @@ import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.example.events.PersonRegistered;
 import org.example.events.SexChanged;
+import org.example.events.SomethingDone;
 import org.example.events.ThingBought;
 import org.example.write.commands.BuyThing;
 import org.example.write.commands.ChangeSex;
@@ -49,6 +50,10 @@ public class Person extends AbstractAnnotatedAggregateRoot<String> {
             throw new IllegalArgumentException(format("Gender %s can not change to %s", this.gender, gender));
         }
         apply(new SexChanged(personId, changeSex.getGender()));
+    }
+
+    public void doSomething(String something) {
+        apply(new SomethingDone(personId, something));
     }
 
     @CommandHandler
