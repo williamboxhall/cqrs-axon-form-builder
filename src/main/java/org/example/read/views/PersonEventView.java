@@ -1,13 +1,12 @@
 package org.example.read.views;
 
-import static javax.persistence.TemporalType.TIMESTAMP;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 @Entity
 public class PersonEventView {
@@ -15,8 +14,9 @@ public class PersonEventView {
     private UUID id;
     private final String personId;
     private final String eventType;
-    @Temporal(TIMESTAMP)
-    private final Date eventDate;
+    @Column
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    private final DateTime eventDate;
 
     protected PersonEventView() {
         this.personId = null;
@@ -24,7 +24,7 @@ public class PersonEventView {
         this.eventDate = null;
     }
 
-    public PersonEventView(UUID id, String personId, String eventType, Date eventDate) {
+    public PersonEventView(UUID id, String personId, String eventType, DateTime eventDate) {
         this.id = id;
         this.personId = personId;
         this.eventType = eventType;
@@ -40,6 +40,6 @@ public class PersonEventView {
     }
 
     public String getEventDate() {
-        return new SimpleDateFormat("dd/MM/yyyy").format(eventDate);
+        return eventDate.toString("dd/MM/yyyy");
     }
 }
