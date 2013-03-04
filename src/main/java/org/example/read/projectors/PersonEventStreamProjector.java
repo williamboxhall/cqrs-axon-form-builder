@@ -4,7 +4,6 @@ import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
 import static com.google.common.base.CaseFormat.UPPER_CAMEL;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventhandling.annotation.Timestamp;
@@ -46,7 +45,7 @@ public class PersonEventStreamProjector implements ReplayAware, QueryHandler<Lis
     }
 
     private void saveEventEntryFor(String personId, Event event, DateTime eventDate) {
-        screen.save(new PersonEventView(UUID.randomUUID(), personId, typeOf(event), eventDate));
+        screen.save(new PersonEventView(personId, typeOf(event), eventDate));
     }
 
     private String typeOf(Event event) {
