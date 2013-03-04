@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PersonEventsScreen extends CrudRepository<PersonEventView, String> {
-    List<PersonEventView> findByPersonId(String personId);
+    List<PersonEventView> findByPersonIdOrderByEventDateAsc(String personId);
 }

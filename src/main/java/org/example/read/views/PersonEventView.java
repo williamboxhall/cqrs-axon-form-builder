@@ -1,9 +1,13 @@
 package org.example.read.views;
 
+import static javax.persistence.TemporalType.TIMESTAMP;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 @Entity
 public class PersonEventView {
@@ -11,6 +15,7 @@ public class PersonEventView {
     private UUID id;
     private final String personId;
     private final String eventType;
+    @Temporal(TIMESTAMP)
     private final Date eventDate;
 
     protected PersonEventView() {
@@ -34,7 +39,7 @@ public class PersonEventView {
         return eventType;
     }
 
-    public Date getEventDate() {
-        return eventDate;
+    public String getEventDate() {
+        return new SimpleDateFormat("dd/MM/yyyy").format(eventDate);
     }
 }

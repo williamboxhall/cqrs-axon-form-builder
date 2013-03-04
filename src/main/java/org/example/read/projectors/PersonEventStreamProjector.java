@@ -22,12 +22,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonEventStreamProjector implements ReplayAware, QueryHandler<List<PersonEventView>, PersonEventStream>{
+public class PersonEventStreamProjector implements ReplayAware, QueryHandler<List<PersonEventView>, PersonEventStream> {
     private PersonEventsScreen screen;
 
     @Override
     public List<PersonEventView> handle(PersonEventStream query) {
-        return screen.findByPersonId(query.getPersonId());
+        return screen.findByPersonIdOrderByEventDateAsc(query.getPersonId());
     }
 
     @EventHandler
@@ -46,6 +46,7 @@ public class PersonEventStreamProjector implements ReplayAware, QueryHandler<Lis
     }
 
     private void saveEventEntryFor(String personId, Event event) {
+        // TODO get date off event
         screen.save(new PersonEventView(UUID.randomUUID(), personId, typeOf(event), new Date()));
     }
 
