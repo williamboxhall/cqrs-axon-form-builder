@@ -1,4 +1,4 @@
-A toy webapp with a minimalist implementation of CQRS/event-sourcing using the Axon Framework.
+A toy webapp with a minimalist implementation of CQRS/event-sourcing using the Axon Framework.<br />
 <br />
 Build and run with: mvn clean install jetty:run
 <br />
