@@ -10,7 +10,6 @@ import org.axonframework.eventhandling.annotation.Timestamp;
 import org.axonframework.eventhandling.replay.ReplayAware;
 import org.example.events.PersonRegistered;
 import org.example.events.SexChanged;
-import org.example.events.SomethingDone;
 import org.example.events.ThingBought;
 import org.example.eventsourcing.domain.Event;
 import org.example.eventsourcing.domain.QueryHandler;
@@ -42,11 +41,6 @@ public class PersonEventStreamProjector implements ReplayAware, QueryHandler<Lis
 
     @EventHandler
     private void on(ThingBought event, @Timestamp DateTime eventDate) {
-        saveEventEntryFor(event.getPersonId(), event, eventDate);
-    }
-
-    @EventHandler
-    private void on(SomethingDone event, @Timestamp DateTime eventDate) {
         saveEventEntryFor(event.getPersonId(), event, eventDate);
     }
 
