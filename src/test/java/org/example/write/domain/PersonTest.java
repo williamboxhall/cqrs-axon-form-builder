@@ -1,6 +1,5 @@
 package org.example.write.domain;
 
-import org.example.write.commands.ChangeSex;
 import org.example.write.commands.RegisterPerson;
 import org.junit.Test;
 
@@ -11,36 +10,6 @@ public class PersonTest {
     private static final String TITLE = "title";
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
-
-    @Test(expected = IllegalArgumentException.class)
-    public void failsToRegisterWithNullTitle() {
-        new Person(new RegisterPerson(PERSON_ID, null, FIRST_NAME, LAST_NAME, BIRTHDAY, GENDER));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void failsToCreateWithBlankTitle() {
-        new Person(new RegisterPerson(PERSON_ID, "", FIRST_NAME, LAST_NAME, BIRTHDAY, GENDER));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void failsToCreateWithNullFirstName() {
-        new Person(new RegisterPerson(PERSON_ID, TITLE, null, LAST_NAME, BIRTHDAY, GENDER));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void failsToCreateWithBlankFirstName() {
-        new Person(new RegisterPerson(PERSON_ID, TITLE, "", LAST_NAME, BIRTHDAY, GENDER));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void failsToCreateWithNullLastName() {
-         new Person(new RegisterPerson(PERSON_ID, TITLE, FIRST_NAME, null, BIRTHDAY, GENDER));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void failsToCreateWithBlankLastName() {
-        new Person(new RegisterPerson(PERSON_ID, TITLE, FIRST_NAME, "", BIRTHDAY, GENDER));
-    }
 
     @Test(expected = NullPointerException.class)
     public void failsToCreateWithNullBirthday() {

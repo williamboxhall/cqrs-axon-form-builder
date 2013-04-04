@@ -1,9 +1,6 @@
 package org.example.write.domain;
 
 import static java.lang.String.format;
-import static org.example.write.infrastructure.MatcherPreconditions.checkThatArgument;
-import static org.example.write.infrastructure.StringMatchers.nullOrEmpty;
-import static org.hamcrest.Matchers.not;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventhandling.annotation.EventHandler;
@@ -39,8 +36,8 @@ public class Person extends AbstractAnnotatedAggregateRoot<String> {
 
     @CommandHandler
     public Person(RegisterPerson registerPerson) {
-        apply(new PersonRegistered(registerPerson.getPersonId(), valid(registerPerson.getTitle(), "title"), valid(registerPerson.getFirstName(), "firstName"),
-                valid(registerPerson.getLastName(), "lastName"), validBirthday(registerPerson.getBirthday()), validGender(registerPerson.getGender())));
+        apply(new PersonRegistered(registerPerson.getPersonId(), registerPerson.getTitle(), registerPerson.getFirstName(),
+                registerPerson.getLastName(), validBirthday(registerPerson.getBirthday()), validGender(registerPerson.getGender())));
     }
 
     @CommandHandler
@@ -68,7 +65,4 @@ public class Person extends AbstractAnnotatedAggregateRoot<String> {
         return birthday;
     }
 
-    private static String valid(String value, String name) {
-        return checkThatArgument(value, not(nullOrEmpty()), name);
-    }
 }

@@ -2,12 +2,17 @@ package org.example.write.commands;
 
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 import org.example.eventsourcing.domain.Command;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class RegisterPerson implements Command {
     @TargetAggregateIdentifier
+    @NotBlank
     private String personId;
+    @NotBlank
     private String title;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
     private String birthday;
     private String gender;
