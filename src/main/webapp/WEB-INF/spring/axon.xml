@@ -41,12 +41,12 @@
         </bean>
     </axon:cluster>
 
-    <axon:event-sourcing-repository id="personRepository"
-                                    aggregate-type="org.example.write.domain.Person"/>
+    <axon:event-sourcing-repository id="booleanCustomFieldRepository"
+                                    aggregate-type="org.example.write.domain.BooleanCustomField"/>
 
-    <axon:aggregate-command-handler id="personHandler"
-                                    aggregate-type="org.example.write.domain.Person"
-                                    repository="personRepository"
+    <axon:aggregate-command-handler id="booleanCustomFieldHandler"
+                                    aggregate-type="org.example.write.domain.BooleanCustomField"
+                                    repository="booleanCustomFieldRepository"
                                     command-bus="commandBus"/>
 
 
