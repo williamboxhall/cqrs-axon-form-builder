@@ -1,6 +1,6 @@
 .project  
 .classpath
-cqrs-axon-webapp.iml
+cqrs-axon-custom-fields.iml
 .settings/
 .idea/
 target/
