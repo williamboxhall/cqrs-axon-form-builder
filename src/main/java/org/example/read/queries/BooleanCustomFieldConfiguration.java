@@ -1,9 +1,9 @@
 package org.example.read.queries;
 
 import org.example.eventsourcing.domain.Query;
-import org.example.read.views.BooleanCustomFieldConigurationDto;
+import org.example.read.views.BooleanCustomFieldConfigurationDto;
 
-public class BooleanCustomFieldConfiguration implements Query<BooleanCustomFieldConigurationDto> {
+public class BooleanCustomFieldConfiguration implements Query<BooleanCustomFieldConfigurationDto> {
     private String booleanCustomFieldGuid;
 
     public String getBooleanCustomFieldGuid() {

@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BooleanCustomFieldScreen extends CrudRepository<BooleanCustomFieldConigurationDto, String> {
+public interface BooleanCustomFieldScreen extends CrudRepository<BooleanCustomFieldConfigurationDto, String> {
 }
