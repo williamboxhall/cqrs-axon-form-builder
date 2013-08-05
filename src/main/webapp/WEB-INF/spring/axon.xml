@@ -49,6 +49,13 @@
                                     repository="booleanCustomFieldRepository"
                                     command-bus="commandBus"/>
 
+    <axon:event-sourcing-repository id="singleLineTextCustomFieldRepository"
+                                    aggregate-type="org.example.write.domain.SingleLineTextCustomField"/>
+
+    <axon:aggregate-command-handler id="singleLineTextCustomFieldHandler"
+                                    aggregate-type="org.example.write.domain.SingleLineTextCustomField"
+                                    repository="singleLineTextCustomFieldRepository"
+                                    command-bus="commandBus"/>
 
     <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
         <property name="commandBus" ref="commandBus"/>

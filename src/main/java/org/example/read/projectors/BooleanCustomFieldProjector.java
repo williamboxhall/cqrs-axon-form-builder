@@ -15,14 +15,14 @@ public class BooleanCustomFieldProjector implements QueryHandler<BooleanCustomFi
     private BooleanCustomFieldScreen screen;
 
     @Override
-    public BooleanCustomFieldConfigurationDto handle(BooleanCustomFieldConfiguration booleanCustomFieldConfiguration) {
-        return screen.findOne(booleanCustomFieldConfiguration.getBooleanCustomFieldGuid());
+    public BooleanCustomFieldConfigurationDto handle(BooleanCustomFieldConfiguration query) {
+        return screen.findOne(query.getGuid());
     }
 
     @EventHandler
     private void on(BooleanCustomFieldConfigured event) {
         screen.save(new BooleanCustomFieldConfigurationDto(
-                event.getBooleanCustomFieldGuid(),
+                event.getGuid(),
                 event.getContext(),
                 event.getName(),
                 event.getLocale(),

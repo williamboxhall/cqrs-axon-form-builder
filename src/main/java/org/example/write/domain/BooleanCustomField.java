@@ -15,13 +15,13 @@ public class BooleanCustomField extends AbstractAnnotatedAggregateRoot<String> {
     }
 
     @EventHandler
-    private void on(BooleanCustomFieldConfigured booleanCustomFieldConfigured) {
-        this.booleanCustomFieldGuid = booleanCustomFieldConfigured.getBooleanCustomFieldGuid();
+    private void on(BooleanCustomFieldConfigured event) {
+        this.booleanCustomFieldGuid = event.getGuid();
     }
 
     @CommandHandler
-    public BooleanCustomField(ConfigureBooleanCustomField configuration) {
-        apply(new BooleanCustomFieldConfigured(configuration.getBooleanCustomFieldGuid(), configuration.getContext(),
-                configuration.getName(), configuration.getLocale(), configuration.getLabel(), configuration.getTooltip()));
+    public BooleanCustomField(ConfigureBooleanCustomField command) {
+        apply(new BooleanCustomFieldConfigured(command.getGuid(), command.getContext(),
+                command.getName(), command.getLocale(), command.getLabel(), command.getTooltip()));
     }
 }
