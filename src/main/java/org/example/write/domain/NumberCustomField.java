@@ -9,14 +9,14 @@ import org.example.write.commands.ConfigureSingleLineTextCustomField;
 
 public class NumberCustomField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
-    private String singleLineTextCustomFieldGuid;
+    private String guid;
 
     private NumberCustomField() {
     }
 
     @EventHandler
     private void on(SingleLineTextCustomFieldConfigured event) {
-        this.singleLineTextCustomFieldGuid = event.getGuid();
+        this.guid = event.getGuid();
     }
 
     @CommandHandler

@@ -9,14 +9,14 @@ import org.example.write.commands.ConfigureBooleanCustomField;
 
 public class BooleanCustomField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
-    private String booleanCustomFieldGuid;
+    private String guid;
 
     private BooleanCustomField() {
     }
 
     @EventHandler
     private void on(BooleanCustomFieldConfigured event) {
-        this.booleanCustomFieldGuid = event.getGuid();
+        this.guid = event.getGuid();
     }
 
     @CommandHandler
