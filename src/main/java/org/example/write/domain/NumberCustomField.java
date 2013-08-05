@@ -7,11 +7,11 @@ import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.example.events.SingleLineTextCustomFieldConfigured;
 import org.example.write.commands.ConfigureSingleLineTextCustomField;
 
-public class SingleLineTextCustomField extends AbstractAnnotatedAggregateRoot<String> {
+public class NumberCustomField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
     private String singleLineTextCustomFieldGuid;
 
-    private SingleLineTextCustomField() {
+    private NumberCustomField() {
     }
 
     @EventHandler
@@ -20,7 +20,7 @@ public class SingleLineTextCustomField extends AbstractAnnotatedAggregateRoot<St
     }
 
     @CommandHandler
-    public SingleLineTextCustomField(ConfigureSingleLineTextCustomField command) {
+    public NumberCustomField(ConfigureSingleLineTextCustomField command) {
         apply(new SingleLineTextCustomFieldConfigured(command.getGuid(), command.getContext(),
                 command.getName(), command.getLocale(), command.getLabel(),
                 command.getHintText(), command.getMinLength(), command.getMaxLength()));

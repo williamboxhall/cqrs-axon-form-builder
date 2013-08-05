@@ -11,8 +11,8 @@ public class SingleLineTextCustomFieldConfigurationDto extends CustomFieldConfig
     }
 
     public SingleLineTextCustomFieldConfigurationDto(String guid, String context, String name, String locale,
-                                                     String label, String tooltip, int minLength, int maxLength) {
-        super(guid, context, name, locale, label, tooltip);
+                                                     String label, String hintText, int minLength, int maxLength) {
+        super(guid, context, name, locale, label, hintText);
         this.minLength = minLength;
         this.maxLength = maxLength;
     }

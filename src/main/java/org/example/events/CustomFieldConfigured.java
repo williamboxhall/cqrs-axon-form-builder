@@ -6,15 +6,15 @@ public abstract class CustomFieldConfigured {
     private final String name;
     private final String locale;
     private final String label;
-    private final String tooltip;
+    private final String hintText;
 
-    public CustomFieldConfigured(String guid, String context, String name, String locale, String label, String tooltip) {
+    public CustomFieldConfigured(String guid, String context, String name, String locale, String label, String hintText) {
         this.guid = guid;
         this.context = context;
         this.name = name;
         this.locale = locale;
         this.label = label;
-        this.tooltip = tooltip;
+        this.hintText = hintText;
     }
 
     public String getGuid() {
@@ -37,7 +37,7 @@ public abstract class CustomFieldConfigured {
         return label;
     }
 
-    public String getTooltip() {
-        return tooltip;
+    public String getHintText() {
+        return hintText;
     }
 }

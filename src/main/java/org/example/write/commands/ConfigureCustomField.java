@@ -17,7 +17,7 @@ public class ConfigureCustomField implements Command {
     @NotBlank
     private String label;
     @NotBlank
-    private String tooltip;
+    private String hintText;
 
     public String getGuid() {
         return guid;
@@ -59,11 +59,11 @@ public class ConfigureCustomField implements Command {
         this.label = label;
     }
 
-    public String getTooltip() {
-        return tooltip;
+    public String getHintText() {
+        return hintText;
     }
 
-    public void setTooltip(String tooltip) {
-        this.tooltip = tooltip;
+    public void setHintText(String hintText) {
+        this.hintText = hintText;
     }
 }

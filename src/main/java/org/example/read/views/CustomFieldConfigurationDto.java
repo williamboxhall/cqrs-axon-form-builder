@@ -17,18 +17,18 @@ public abstract class CustomFieldConfigurationDto {
     private String name;
     private String locale;
     private String label;
-    private String tooltip;
+    private String hintText;
 
     public CustomFieldConfigurationDto() {
     }
 
-    public CustomFieldConfigurationDto(String customFieldGuid, String context, String name, String locale, String label, String tooltip) {
+    public CustomFieldConfigurationDto(String customFieldGuid, String context, String name, String locale, String label, String hintText) {
         this.customFieldGuid = customFieldGuid;
         this.context = context;
         this.name = name;
         this.locale = locale;
         this.label = label;
-        this.tooltip = tooltip;
+        this.hintText = hintText;
     }
 
     public String getCustomFieldGuid() {
@@ -51,7 +51,7 @@ public abstract class CustomFieldConfigurationDto {
         return label;
     }
 
-    public String getTooltip() {
-        return tooltip;
+    public String getHintText() {
+        return hintText;
     }
 }

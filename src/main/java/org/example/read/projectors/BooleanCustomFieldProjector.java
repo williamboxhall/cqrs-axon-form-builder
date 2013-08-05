@@ -27,6 +27,6 @@ public class BooleanCustomFieldProjector implements QueryHandler<BooleanCustomFi
                 event.getName(),
                 event.getLocale(),
                 event.getLabel(),
-                event.getTooltip()));
+                event.getHintText()));
     }
 }

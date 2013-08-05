@@ -22,6 +22,6 @@ public class BooleanCustomField extends AbstractAnnotatedAggregateRoot<String> {
     @CommandHandler
     public BooleanCustomField(ConfigureBooleanCustomField command) {
         apply(new BooleanCustomFieldConfigured(command.getGuid(), command.getContext(),
-                command.getName(), command.getLocale(), command.getLabel(), command.getTooltip()));
+                command.getName(), command.getLocale(), command.getLabel(), command.getHintText()));
     }
 }

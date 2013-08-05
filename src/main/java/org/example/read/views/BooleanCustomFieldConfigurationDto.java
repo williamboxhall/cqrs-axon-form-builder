@@ -7,7 +7,7 @@ public class BooleanCustomFieldConfigurationDto extends CustomFieldConfiguration
     public BooleanCustomFieldConfigurationDto() {
     }
 
-    public BooleanCustomFieldConfigurationDto(String guid, String context, String name, String locale, String label, String tooltip) {
-        super(guid, context, name, locale, label, tooltip);
+    public BooleanCustomFieldConfigurationDto(String guid, String context, String name, String locale, String label, String hintText) {
+        super(guid, context, name, locale, label, hintText);
     }
 }

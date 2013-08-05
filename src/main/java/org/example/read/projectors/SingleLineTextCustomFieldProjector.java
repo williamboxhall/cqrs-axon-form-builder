@@ -27,7 +27,7 @@ public class SingleLineTextCustomFieldProjector implements QueryHandler<SingleLi
                 event.getName(),
                 event.getLocale(),
                 event.getLabel(),
-                event.getTooltip(),
+                event.getHintText(),
                 event.getMinLength(),
                 event.getMaxLength()));
     }
