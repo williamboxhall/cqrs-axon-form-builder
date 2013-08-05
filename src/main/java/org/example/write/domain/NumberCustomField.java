@@ -4,8 +4,8 @@ import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
-import org.example.events.SingleLineTextCustomFieldConfigured;
-import org.example.write.commands.ConfigureSingleLineTextCustomField;
+import org.example.events.NumberCustomFieldConfigured;
+import org.example.write.commands.ConfigureNumberCustomField;
 
 public class NumberCustomField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
@@ -15,14 +15,14 @@ public class NumberCustomField extends AbstractAnnotatedAggregateRoot<String> {
     }
 
     @EventHandler
-    private void on(SingleLineTextCustomFieldConfigured event) {
+    private void on(NumberCustomFieldConfigured event) {
         this.guid = event.getGuid();
     }
 
     @CommandHandler
-    public NumberCustomField(ConfigureSingleLineTextCustomField command) {
-        apply(new SingleLineTextCustomFieldConfigured(command.getGuid(), command.getContext(),
+    public NumberCustomField(ConfigureNumberCustomField command) {
+        apply(new NumberCustomFieldConfigured(command.getGuid(), command.getContext(),
                 command.getName(), command.getLocale(), command.getLabel(),
-                command.getHintText(), command.getMinLength(), command.getMaxLength()));
+                command.getHintText(), command.getUnitOfMeasure().getQuantity(), command.getUnitOfMeasure().getName()));
     }
 }

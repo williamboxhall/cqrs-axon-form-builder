@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <context:annotation-config/>
     <context:component-scan base-package="org.example.eventsourcing.presentation"/>
@@ -26,27 +26,24 @@
         </property>
     </bean>
 
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="jacksonMessageConverter"/>
-            </list>
-        </property>
-        <property name="customArgumentResolvers">
-            <list>
-                <ref bean="commandArgumentResolver"/>
-                <ref bean="queryArgumentResolver"/>
-            </list>
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:argument-resolvers>
+            <bean class="org.example.eventsourcing.presentation.CommandArgumentResolver">
+                <constructor-arg ref="jsonMapper"/>
+            </bean>
+            <bean class="org.example.eventsourcing.presentation.QueryArgumentResolver"/>
+        </mvc:argument-resolvers>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="org.example.write.infrastructure.UnitOfMeasureConverter"/>
+            </set>
         </property>
     </bean>
-
-    <bean id="jacksonMessageConverter"
-          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
-
-    <bean id="commandArgumentResolver" class="org.example.eventsourcing.presentation.CommandArgumentResolver">
-        <constructor-arg ref="jsonMapper"/>
-    </bean>
-
-    <bean id="queryArgumentResolver" class="org.example.eventsourcing.presentation.QueryArgumentResolver"/>
 
 </beans>
