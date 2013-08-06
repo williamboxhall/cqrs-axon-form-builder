@@ -26,7 +26,7 @@
         </property>
     </bean>
 
-    <mvc:annotation-driven conversion-service="conversionService">
+    <mvc:annotation-driven>
         <mvc:argument-resolvers>
             <bean class="org.example.eventsourcing.presentation.CommandArgumentResolver">
                 <constructor-arg ref="jsonMapper"/>
@@ -34,16 +34,19 @@
             <bean class="org.example.eventsourcing.presentation.QueryArgumentResolver"/>
         </mvc:argument-resolvers>
         <mvc:message-converters>
-            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="org.example.eventsourcing.presentation.CustomObjectMapper">
+                        <constructor-arg>
+                            <map>
+                                <entry key="org.example.write.domain.UnitOfMeasure" value-ref="unitOfMeasureDeserializer"/>
+                            </map>
+                        </constructor-arg>
+                    </bean>
+                </property>
+            </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <set>
-                <bean class="org.example.write.infrastructure.UnitOfMeasureConverter"/>
-            </set>
-        </property>
-    </bean>
-
+    <bean id="unitOfMeasureDeserializer" class="org.example.write.infrastructure.UnitOfMeasureSerializer"/>
 </beans>
