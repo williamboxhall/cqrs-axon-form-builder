@@ -1,6 +1,27 @@
-<html>
-<head></head>
+<!doctype html>
+<html ng-app>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+</head>
 <body>
-Hello world
+<div>
+    <h1>Custom Fields</h1>
+
+    <form name="customFields">
+
+        <div class="control-group" ng-class="{error: customFields.title.$invalid}">
+            <label>Label</label>
+            <input type="text" name="fieldName" ng-model="submission.fieldName" placeholder="hintText"
+                   ng-minlength="3" ng-maxlength="6" minLength="3" maxLength="6" required>
+            <span ng-show="customFields.fieldName.$error.required" class="help-inline">Required</span>
+        </div>
+
+        <div class="control-group">
+            <span>{{submission | json}}</span>
+        </div>
+
+    </form>
+</div>
 </body>
 </html>
