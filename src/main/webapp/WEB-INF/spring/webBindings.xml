@@ -9,7 +9,13 @@
     <context:annotation-config/>
     <context:component-scan base-package="org.example.eventsourcing.presentation"/>
 
-    <bean id="jsonMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
+    <bean id="jsonMapper" class="org.example.eventsourcing.presentation.CustomObjectMapper">
+        <constructor-arg>
+            <map>
+                <entry key="org.example.write.domain.UnitOfMeasure" value-ref="unitOfMeasureDeserializer"/>
+            </map>
+        </constructor-arg>
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="mediaTypes">
@@ -35,15 +41,7 @@
         </mvc:argument-resolvers>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-                <property name="objectMapper">
-                    <bean class="org.example.eventsourcing.presentation.CustomObjectMapper">
-                        <constructor-arg>
-                            <map>
-                                <entry key="org.example.write.domain.UnitOfMeasure" value-ref="unitOfMeasureDeserializer"/>
-                            </map>
-                        </constructor-arg>
-                    </bean>
-                </property>
+                <property name="objectMapper" ref="jsonMapper"/>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
