@@ -2,13 +2,14 @@
 <html ng-app>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="/customFields.js"></script>
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
 </head>
 <body>
 <div>
     <h1>Custom Fields</h1>
 
-    <form name="customFields">
+    <form name="customFields" ng-controller="CustomFieldsCtrl">
 
         <div class="control-group" ng-class="{error: customFields.title.$invalid}">
             <label>Label</label>
@@ -19,6 +20,18 @@
 
         <div class="control-group">
             <span>{{submission | json}}</span>
+        </div>
+
+        <div class="control-group">
+            <span>Num fields configured: {{fields.length}}</span>
+        </div>
+
+        <div class="control-group" ng-repeat="field in fields">
+            {{field.label}}
+            <input type="text" name="{{field.name}}" placeholder="{{field.hintText}}"
+                   ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
+                   minLength="{{field.minLength}}" maxLength="{{field.maxLength}}">
+            {{field.unitSymbol}}
         </div>
 
     </form>

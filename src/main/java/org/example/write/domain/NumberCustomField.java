@@ -21,8 +21,9 @@ public class NumberCustomField extends AbstractAnnotatedAggregateRoot<String> {
 
     @CommandHandler
     public NumberCustomField(ConfigureNumberCustomField command) {
+        UnitOfMeasure unitOfMeasure = command.getUnitOfMeasure();
         apply(new NumberCustomFieldConfigured(command.getGuid(), command.getContext(),
-                command.getName(), command.getLocale(), command.getLabel(),
-                command.getHintText(), command.getUnitOfMeasure().getQuantity(), command.getUnitOfMeasure().getName()));
+                command.getName(), command.getLocale(), command.getLabel(), command.getHintText(),
+                unitOfMeasure.getQuantity(), unitOfMeasure.getName(), unitOfMeasure.getSymbol()));
     }
 }

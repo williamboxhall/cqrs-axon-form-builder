@@ -4,4 +4,6 @@ public interface UnitOfMeasure {
     String getQuantity();
 
     String getName();
+
+    String getSymbol();
 }

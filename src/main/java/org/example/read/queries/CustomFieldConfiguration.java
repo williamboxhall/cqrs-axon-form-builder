@@ -3,7 +3,7 @@ package org.example.read.queries;
 import org.example.eventsourcing.domain.Query;
 import org.example.read.views.CustomFieldConfigurationDto;
 
-public class CustomFieldConfiguration<T extends CustomFieldConfigurationDto> implements Query<T> {
+public abstract class CustomFieldConfiguration<T extends CustomFieldConfigurationDto> implements Query<T> {
     private String guid;
 
     public String getGuid() {

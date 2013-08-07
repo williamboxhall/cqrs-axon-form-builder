@@ -29,6 +29,7 @@ public class NumberCustomFieldProjector implements QueryHandler<NumberCustomFiel
                 event.getLabel(),
                 event.getHintText(),
                 event.getUnitQuantity(),
-                event.getUnitName()));
+                event.getUnitName(),
+                event.getUnitSymbol()));
     }
 }
