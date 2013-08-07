@@ -1,5 +1,7 @@
 package org.example.read.projectors;
 
+import static com.google.common.collect.Ordering.usingToString;
+
 import java.util.List;
 
 import org.example.eventsourcing.domain.QueryHandler;
@@ -16,6 +18,6 @@ public class CustomFieldGroupProjector implements QueryHandler<List<CustomFieldC
 
     @Override
     public List<CustomFieldConfigurationDto> handle(CustomFieldGroup query) {
-        return screen.findByContext(query.getContext());
+        return usingToString().sortedCopy(screen.findByContext(query.getContext()));
     }
 }

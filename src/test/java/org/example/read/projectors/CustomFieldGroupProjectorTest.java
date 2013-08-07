@@ -1,5 +1,6 @@
 package org.example.read.projectors;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
@@ -20,12 +21,13 @@ public class CustomFieldGroupProjectorTest {
     @Mock
     private CustomFieldScreen screen;
     @Mock
-    private List<CustomFieldConfigurationDto> fields;
+    private CustomFieldConfigurationDto field;
     @InjectMocks
     private CustomFieldGroupProjector projector;
 
     @Test
     public void shouldFindAllCustomFieldsForContext() {
+        List<CustomFieldConfigurationDto> fields = newArrayList(field);
         when(screen.findByContext("context")).thenReturn(fields);
         assertThat(projector.handle(new CustomFieldGroup("context")), is(fields));
     }

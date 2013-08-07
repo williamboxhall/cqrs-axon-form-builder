@@ -28,6 +28,13 @@
             <span>Number of fields configured: {{fields.length}}</span>
         </div>
 
+        <div class="control-group">
+            Configure field:
+            <button ng-click="configureNumber()">Number</button>
+            <button ng-click="configureBoolean()">Boolean</button>
+            <button ng-click="configureSingleLineText()">Single Line Text</button>
+        </div>
+
         <div class="control-group" ng-repeat="field in fields">
             {{field.label}}
             <input type="{{field.type}}" name="{{field.name}}" placeholder="{{field.hintText}}"
