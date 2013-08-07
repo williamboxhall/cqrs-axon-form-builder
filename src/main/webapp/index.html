@@ -11,6 +11,7 @@
 
     <form name="customFields" ng-controller="CustomFieldsCtrl">
 
+        <!--
         <div class="control-group" ng-class="{error: customFields.title.$invalid}">
             <label>Label</label>
             <input type="text" name="fieldName" ng-model="submission.fieldName" placeholder="hintText"
@@ -21,14 +22,15 @@
         <div class="control-group">
             <span>{{submission | json}}</span>
         </div>
+        -->
 
         <div class="control-group">
-            <span>Num fields configured: {{fields.length}}</span>
+            <span>Number of fields configured: {{fields.length}}</span>
         </div>
 
         <div class="control-group" ng-repeat="field in fields">
             {{field.label}}
-            <input type="text" name="{{field.name}}" placeholder="{{field.hintText}}"
+            <input type="{{field.type}}" name="{{field.name}}" placeholder="{{field.hintText}}"
                    ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
                    minLength="{{field.minLength}}" maxLength="{{field.maxLength}}">
             {{field.unitSymbol}}

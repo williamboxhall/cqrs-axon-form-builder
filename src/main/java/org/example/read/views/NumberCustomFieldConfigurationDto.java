@@ -14,7 +14,7 @@ public class NumberCustomFieldConfigurationDto extends CustomFieldConfigurationD
     public NumberCustomFieldConfigurationDto(String guid, String context, String name, String locale,
                                              String label, String hintText,
                                              String unitQuantity, String unitName, String unitSymbol) {
-        super(guid, context, name, locale, label, hintText);
+        super(guid, context, name, locale, label, hintText, "number");
         this.unitQuantity = unitQuantity;
         this.unitName = unitName;
         this.unitSymbol = unitSymbol;
