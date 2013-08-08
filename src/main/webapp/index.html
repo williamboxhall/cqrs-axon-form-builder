@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
     <script src="/customFields.js"></script>
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
 </head>
@@ -39,10 +39,15 @@
             {{field.label}}
             <input type="{{field.type}}" name="{{field.name}}" placeholder="{{field.hintText}}"
                    ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
-                   minLength="{{field.minLength}}" maxLength="{{field.maxLength}}">
+                   minLength="{{field.minLength}}" maxLength="{{field.maxLength}}"
+                   value="{{field.type == 'checkbox' ? true : false}}"
+                   ng-model="submissions[field.name]">
             {{field.unitSymbol}}
         </div>
 
+        <div class="control-group">
+            <span>JSON: {{submissions | json}}</span>
+        </div>
     </form>
 </div>
 </body>

@@ -1,5 +1,6 @@
 function CustomFieldsCtrl($scope, $http) {
 	$scope.fields = [];
+    $scope.submissions = {};
 
 	$scope.configureNumber = function () {
 		$http.post('cqrs/perform/ConfigureNumberCustomField', {
