@@ -9,47 +9,28 @@
 <div ng-controller="CustomFieldsCtrl">
     <h1>Custom Fields</h1>
 
-    <!--
-    <div class="control-group" ng-class="{error: customFields.title.$invalid}">
-        <label>Label</label>
-        <input type="text" name="fieldName" ng-model="submission.fieldName" placeholder="hintText"
-               ng-minlength="3" ng-maxlength="6" minLength="3" maxLength="6" required>
-        <span ng-show="customFields.fieldName.$error.required" class="help-inline">Required</span>
-    </div>
-    -->
-
-
     <div class="control-group">
         Configure field:
         <button ng-click="configureNumber()">Number</button>
         <button ng-click="configureBoolean()">Boolean</button>
         <button ng-click="configureSingleLineText()">Single Line Text</button>
     </div>
+
     <div class="control-group">
         <span>Number of fields configured: {{fields.length}}</span>
     </div>
 
-
-    <!--
-    ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
-                       minLength="{{field.minLength}}" maxLength="{{field.maxLength}}"
-    value="{{field.type == 'checkbox' ? true : false}}"-->
     <form name="customFields">
         <div class="control-group" ng-repeat="field in fields" ng-class="{error: customFields.this.$invalid}">
             <ng-form name="customFields">
-                <label>{{field.label}}</label>
-                <input type="{{field.type}}" name="this" placeholder="{{field.hintText}}"
-
+                <label for="{{field.name}}">{{field.label}}</label>
+                <input type="{{field.type}}" id="{{field.name}}" name="this" placeholder="{{field.hintText}}"
+                       ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
+                       minLength="{{field.minLength}}" maxLength="{{field.maxLength}}"
                        ng-model="submissions[field.name]" required>
                 <span>{{field.unitSymbol}}</span>
                 <span ng-show="customFields.this.$error.required" class="help-inline">Required</span>
             </ng-form>
-        </div>
-        <div class="control-group" ng-class="{error: customFields.foo.$invalid}">
-            <label>Foo</label>
-            <input type="text" name="foo" placeholder="Foo blurb" ng-model="submissions['foo']" required>
-            <span>moo</span>
-            <span ng-show="customFields.foo.$error.required" class="help-inline">Required</span>
         </div>
     </form>
 

@@ -1,12 +1,12 @@
 function CustomFieldsCtrl($scope, $http) {
 	$scope.fields = [];
-    $scope.submissions = {};
+	$scope.submissions = {};
 
 	$scope.configureNumber = function () {
 		$http.post('cqrs/perform/ConfigureNumberCustomField', {
-			"guid":new Date().getTime(),
+			"guid":$scope.fields.length,
 			"context":"context",
-			"name":"distance",
+			"name":"distance" + $scope.fields.length,
 			"locale":"en_AU",
 			"label":"Distance",
 			"hintText":"Distance to home in metres",
@@ -18,12 +18,12 @@ function CustomFieldsCtrl($scope, $http) {
 
 	$scope.configureBoolean = function () {
 		$http.post('cqrs/perform/ConfigureBooleanCustomField', {
-			"guid":new Date().getTime(),
+			"guid":$scope.fields.length,
 			"context":"context",
-			"name":"married",
+			"name":"confirm" + $scope.fields.length,
 			"locale":"en_AU",
-			"label":"Married",
-			"hintText":"Are you married?"
+			"label":"Confirm",
+			"hintText":"Tick to confirm"
 		}).success(function () {
 				$scope.refresh();
 			});
@@ -31,12 +31,12 @@ function CustomFieldsCtrl($scope, $http) {
 
 	$scope.configureSingleLineText = function () {
 		$http.post('cqrs/perform/ConfigureSingleLineTextCustomField', {
-			"guid":new Date().getTime(),
+			"guid":$scope.fields.length,
 			"context":"context",
-			"name":"nickname",
+			"name":"nickname" + $scope.fields.length,
 			"locale":"en_AU",
 			"label":"Nickname",
-			"hintText":"What's your nickname? 3-6 letters.",
+			"hintText":"Your nickname 3-6 letters.",
 			"minLength":"3",
 			"maxLength":"6"
 		}).success(function () {
