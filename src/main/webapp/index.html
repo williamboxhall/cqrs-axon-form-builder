@@ -6,49 +6,56 @@
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
 </head>
 <body>
-<div>
+<div ng-controller="CustomFieldsCtrl">
     <h1>Custom Fields</h1>
 
-    <form name="customFields" ng-controller="CustomFieldsCtrl">
+    <!--
+    <div class="control-group" ng-class="{error: customFields.title.$invalid}">
+        <label>Label</label>
+        <input type="text" name="fieldName" ng-model="submission.fieldName" placeholder="hintText"
+               ng-minlength="3" ng-maxlength="6" minLength="3" maxLength="6" required>
+        <span ng-show="customFields.fieldName.$error.required" class="help-inline">Required</span>
+    </div>
+    -->
 
-        <!--
-        <div class="control-group" ng-class="{error: customFields.title.$invalid}">
-            <label>Label</label>
-            <input type="text" name="fieldName" ng-model="submission.fieldName" placeholder="hintText"
-                   ng-minlength="3" ng-maxlength="6" minLength="3" maxLength="6" required>
-            <span ng-show="customFields.fieldName.$error.required" class="help-inline">Required</span>
+
+    <div class="control-group">
+        Configure field:
+        <button ng-click="configureNumber()">Number</button>
+        <button ng-click="configureBoolean()">Boolean</button>
+        <button ng-click="configureSingleLineText()">Single Line Text</button>
+    </div>
+    <div class="control-group">
+        <span>Number of fields configured: {{fields.length}}</span>
+    </div>
+
+
+    <!--
+    ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
+                       minLength="{{field.minLength}}" maxLength="{{field.maxLength}}"
+    value="{{field.type == 'checkbox' ? true : false}}"-->
+    <form name="customFields">
+        <div class="control-group" ng-repeat="field in fields" ng-class="{error: customFields.this.$invalid}">
+            <ng-form name="customFields">
+                <label>{{field.label}}</label>
+                <input type="{{field.type}}" name="this" placeholder="{{field.hintText}}"
+
+                       ng-model="submissions[field.name]" required>
+                <span>{{field.unitSymbol}}</span>
+                <span ng-show="customFields.this.$error.required" class="help-inline">Required</span>
+            </ng-form>
         </div>
-
-        <div class="control-group">
-            <span>{{submission | json}}</span>
-        </div>
-        -->
-
-        <div class="control-group">
-            <span>Number of fields configured: {{fields.length}}</span>
-        </div>
-
-        <div class="control-group">
-            Configure field:
-            <button ng-click="configureNumber()">Number</button>
-            <button ng-click="configureBoolean()">Boolean</button>
-            <button ng-click="configureSingleLineText()">Single Line Text</button>
-        </div>
-
-        <div class="control-group" ng-repeat="field in fields">
-            {{field.label}}
-            <input type="{{field.type}}" name="{{field.name}}" placeholder="{{field.hintText}}"
-                   ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
-                   minLength="{{field.minLength}}" maxLength="{{field.maxLength}}"
-                   value="{{field.type == 'checkbox' ? true : false}}"
-                   ng-model="submissions[field.name]">
-            {{field.unitSymbol}}
-        </div>
-
-        <div class="control-group">
-            <span>JSON: {{submissions | json}}</span>
+        <div class="control-group" ng-class="{error: customFields.foo.$invalid}">
+            <label>Foo</label>
+            <input type="text" name="foo" placeholder="Foo blurb" ng-model="submissions['foo']" required>
+            <span>moo</span>
+            <span ng-show="customFields.foo.$error.required" class="help-inline">Required</span>
         </div>
     </form>
+
+    <div class="control-group">
+        <span>Form submission JSON: {{submissions | json}}</span>
+    </div>
 </div>
 </body>
 </html>
