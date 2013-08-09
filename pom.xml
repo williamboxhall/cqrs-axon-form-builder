@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example</groupId>
-    <artifactId>cqrs-axon-custom-fields</artifactId>
+    <artifactId>cqrs-axon-form-builder</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Global Directory</name>

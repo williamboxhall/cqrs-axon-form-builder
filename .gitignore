@@ -1,6 +1,6 @@
 .project  
 .classpath
-cqrs-axon-custom-fields.iml
+cqrs-axon-form-builder.iml
 .settings/
 .idea/
 target/
