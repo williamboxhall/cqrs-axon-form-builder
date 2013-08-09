@@ -1,9 +1,9 @@
 package org.example.read.queries;
 
 import org.example.eventsourcing.domain.Query;
-import org.example.read.views.CustomFieldConfigurationDto;
+import org.example.read.views.FieldConfigurationDto;
 
-public abstract class CustomFieldConfiguration<T extends CustomFieldConfigurationDto> implements Query<T> {
+public abstract class FieldConfiguration<T extends FieldConfigurationDto> implements Query<T> {
     private String guid;
 
     public String getGuid() {

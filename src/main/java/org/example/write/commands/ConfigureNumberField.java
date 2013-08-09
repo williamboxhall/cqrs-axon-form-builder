@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.example.write.domain.UnitOfMeasure;
 
-public class ConfigureNumberCustomField extends ConfigureCustomField {
+public class ConfigureNumberField extends ConfigureField {
     @NotNull
     private UnitOfMeasure unitOfMeasure;
 

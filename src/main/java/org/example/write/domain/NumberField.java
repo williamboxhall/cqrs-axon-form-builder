@@ -4,26 +4,25 @@ import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
-import org.example.events.NumberCustomFieldConfigured;
-import org.example.write.commands.ConfigureNumberCustomField;
+import org.example.events.NumberFieldConfigured;
+import org.example.write.commands.ConfigureNumberField;
 
-public class NumberCustomField extends AbstractAnnotatedAggregateRoot<String> {
+public class NumberField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
     private String guid;
 
-    private NumberCustomField() {
+    private NumberField() {
     }
 
     @EventHandler
-    private void on(NumberCustomFieldConfigured event) {
+    private void on(NumberFieldConfigured event) {
         this.guid = event.getGuid();
     }
 
     @CommandHandler
-    public NumberCustomField(ConfigureNumberCustomField command) {
+    public NumberField(ConfigureNumberField command) {
         UnitOfMeasure unitOfMeasure = command.getUnitOfMeasure();
-        apply(new NumberCustomFieldConfigured(command.getGuid(), command.getContext(),
-                command.getName(), command.getLocale(), command.getLabel(), command.getHintText(),
+        apply(new NumberFieldConfigured(command.getGuid(), command.getName(), command.getLabel(), command.getHintText(),
                 unitOfMeasure.getQuantity(), unitOfMeasure.getName(), unitOfMeasure.getSymbol()));
     }
 }

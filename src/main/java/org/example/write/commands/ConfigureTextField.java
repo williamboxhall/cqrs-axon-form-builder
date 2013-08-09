@@ -4,9 +4,9 @@ import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.ScriptAssert;
 
-@ScriptAssert(lang="javascript", script="_this.minLength <= _this.maxLength",
+@ScriptAssert(lang = "javascript", script = "_this.minLength <= _this.maxLength",
         message = "Maximum length of SingleLineText must not be less than the minimum length")
-public class ConfigureSingleLineTextCustomField extends ConfigureCustomField {
+public class ConfigureTextField extends ConfigureField {
     @Min(0)
     private int minLength;
     private int maxLength;

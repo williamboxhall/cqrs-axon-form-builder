@@ -1,13 +1,11 @@
-function CustomFieldsCtrl($scope, $http) {
+function FormBuilderCtrl($scope, $http) {
 	$scope.fields = [];
 	$scope.submissions = {};
 
 	$scope.configureNumber = function () {
-		$http.post('cqrs/perform/ConfigureNumberCustomField', {
+		$http.post('cqrs/perform/ConfigureNumberField', {
 			"guid":$scope.fields.length,
-			"context":"context",
 			"name":"distance" + $scope.fields.length,
-			"locale":"en_AU",
 			"label":"Distance",
 			"hintText":"Distance to home in metres",
 			"unitOfMeasure":"length-metre"
@@ -17,11 +15,9 @@ function CustomFieldsCtrl($scope, $http) {
 	};
 
 	$scope.configureBoolean = function () {
-		$http.post('cqrs/perform/ConfigureBooleanCustomField', {
+		$http.post('cqrs/perform/ConfigureBooleanField', {
 			"guid":$scope.fields.length,
-			"context":"context",
 			"name":"confirm" + $scope.fields.length,
-			"locale":"en_AU",
 			"label":"Confirm",
 			"hintText":"Tick to confirm"
 		}).success(function () {
@@ -30,11 +26,9 @@ function CustomFieldsCtrl($scope, $http) {
 	};
 
 	$scope.configureSingleLineText = function () {
-		$http.post('cqrs/perform/ConfigureSingleLineTextCustomField', {
+		$http.post('cqrs/perform/ConfigureTextField', {
 			"guid":$scope.fields.length,
-			"context":"context",
 			"name":"nickname" + $scope.fields.length,
-			"locale":"en_AU",
 			"label":"Nickname",
 			"hintText":"Your nickname 3-6 letters.",
 			"minLength":"3",
@@ -45,7 +39,7 @@ function CustomFieldsCtrl($scope, $http) {
 	};
 
 	$scope.refresh = function () {
-		$http.get('cqrs/view/CustomFieldGroup?context=context').success(function (data) {
+		$http.get('cqrs/view/FormConfiguration').success(function (data) {
 			$scope.fields = data;
 		});
 	};

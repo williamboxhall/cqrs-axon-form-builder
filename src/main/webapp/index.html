@@ -2,34 +2,34 @@
 <html ng-app>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-    <script src="/customFields.js"></script>
+    <script src="/formBuilder.js"></script>
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
 </head>
 <body>
-<div ng-controller="CustomFieldsCtrl">
-    <h1>Custom Fields</h1>
+<div ng-controller="FormBuilderCtrl">
+    <h1>Form Builder</h1>
 
     <div class="control-group">
         Configure field:
         <button ng-click="configureNumber()">Number</button>
         <button ng-click="configureBoolean()">Boolean</button>
-        <button ng-click="configureSingleLineText()">Single Line Text</button>
+        <button ng-click="configureSingleLineText()">Text</button>
     </div>
 
     <div class="control-group">
         <span>Number of fields configured: {{fields.length}}</span>
     </div>
 
-    <form name="customFields">
-        <div class="control-group" ng-repeat="field in fields" ng-class="{error: customFields.this.$invalid}">
-            <ng-form name="customFields">
+    <form name="form">
+        <div class="control-group" ng-repeat="field in fields" ng-class="{error: form.this.$invalid}">
+            <ng-form name="form">
                 <label for="{{field.name}}">{{field.label}}</label>
                 <input type="{{field.type}}" id="{{field.name}}" name="this" placeholder="{{field.hintText}}"
                        ng-minlength="{{field.minLength}}" ng-maxlength="{{field.maxLength}}"
                        minLength="{{field.minLength}}" maxLength="{{field.maxLength}}"
                        ng-model="submissions[field.name]" required>
                 <span>{{field.unitSymbol}}</span>
-                <span ng-show="customFields.this.$error.required" class="help-inline">Required</span>
+                <span ng-show="form.this.$error.required" class="help-inline">Required</span>
             </ng-form>
         </div>
     </form>

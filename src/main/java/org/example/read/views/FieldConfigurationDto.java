@@ -10,44 +10,31 @@ import org.hibernate.annotations.AccessType;
 @Entity
 @AccessType("field")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class CustomFieldConfigurationDto {
+public abstract class FieldConfigurationDto {
     @Id
-    private String customFieldGuid;
-    private String context;
+    private String guid;
     private String name;
-    private String locale;
     private String label;
     private String hintText;
     private String type;
 
-    public CustomFieldConfigurationDto() {
+    public FieldConfigurationDto() {
     }
 
-    public CustomFieldConfigurationDto(String customFieldGuid, String context, String name, String locale, String label,
-                                       String hintText, String type) {
-        this.customFieldGuid = customFieldGuid;
-        this.context = context;
+    public FieldConfigurationDto(String guid, String name, String label, String hintText, String type) {
+        this.guid = guid;
         this.name = name;
-        this.locale = locale;
         this.label = label;
         this.hintText = hintText;
         this.type = type;
     }
 
-    public String getCustomFieldGuid() {
-        return customFieldGuid;
-    }
-
-    public String getContext() {
-        return context;
+    public String getGuid() {
+        return guid;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getLocale() {
-        return locale;
     }
 
     public String getLabel() {
@@ -64,6 +51,6 @@ public abstract class CustomFieldConfigurationDto {
 
     @Override
     public String toString() {
-        return customFieldGuid;
+        return guid;
     }
 }

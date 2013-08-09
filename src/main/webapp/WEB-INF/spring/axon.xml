@@ -41,28 +41,28 @@
         </bean>
     </axon:cluster>
 
-    <axon:event-sourcing-repository id="booleanCustomFieldRepository"
-                                    aggregate-type="org.example.write.domain.BooleanCustomField"/>
+    <axon:event-sourcing-repository id="booleanFieldRepository"
+                                    aggregate-type="org.example.write.domain.BooleanField"/>
 
-    <axon:aggregate-command-handler id="booleanCustomFieldHandler"
-                                    aggregate-type="org.example.write.domain.BooleanCustomField"
-                                    repository="booleanCustomFieldRepository"
+    <axon:aggregate-command-handler id="booleanFieldHandler"
+                                    aggregate-type="org.example.write.domain.BooleanField"
+                                    repository="booleanFieldRepository"
                                     command-bus="commandBus"/>
 
-    <axon:event-sourcing-repository id="singleLineTextCustomFieldRepository"
-                                    aggregate-type="org.example.write.domain.SingleLineTextCustomField"/>
+    <axon:event-sourcing-repository id="textFieldRepository"
+                                    aggregate-type="org.example.write.domain.TextField"/>
 
-    <axon:aggregate-command-handler id="singleLineTextCustomFieldHandler"
-                                    aggregate-type="org.example.write.domain.SingleLineTextCustomField"
-                                    repository="singleLineTextCustomFieldRepository"
+    <axon:aggregate-command-handler id="textFieldHandler"
+                                    aggregate-type="org.example.write.domain.TextField"
+                                    repository="textFieldRepository"
                                     command-bus="commandBus"/>
 
-    <axon:event-sourcing-repository id="numberCustomFieldRepository"
-                                    aggregate-type="org.example.write.domain.NumberCustomField"/>
+    <axon:event-sourcing-repository id="numberFieldRepository"
+                                    aggregate-type="org.example.write.domain.NumberField"/>
 
-    <axon:aggregate-command-handler id="numberCustomFieldHandler"
-                                    aggregate-type="org.example.write.domain.NumberCustomField"
-                                    repository="numberCustomFieldRepository"
+    <axon:aggregate-command-handler id="numberFieldHandler"
+                                    aggregate-type="org.example.write.domain.NumberField"
+                                    repository="numberFieldRepository"
                                     command-bus="commandBus"/>
 
     <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
