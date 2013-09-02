@@ -10,9 +10,9 @@ public class TextFieldConfigurationDto extends FieldConfigurationDto {
     public TextFieldConfigurationDto() {
     }
 
-    public TextFieldConfigurationDto(String guid, String name, String label, String hintText,
+    public TextFieldConfigurationDto(String name, String label, String hintText,
                                      int minLength, int maxLength) {
-        super(guid, name, label, hintText, "text");
+        super(name, label, hintText, "text");
         this.minLength = minLength;
         this.maxLength = maxLength;
     }

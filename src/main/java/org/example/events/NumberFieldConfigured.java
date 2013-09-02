@@ -5,9 +5,9 @@ public class NumberFieldConfigured extends FieldConfigured {
     private final String unitName;
     private final String unitSymbol;
 
-    public NumberFieldConfigured(String guid, String name, String label,
+    public NumberFieldConfigured(String name, String label,
                                  String hintText, String unitQuantity, String unitName, String unitSymbol) {
-        super(guid, name, label, hintText);
+        super(name, label, hintText);
         this.unitQuantity = unitQuantity;
         this.unitName = unitName;
         this.unitSymbol = unitSymbol;

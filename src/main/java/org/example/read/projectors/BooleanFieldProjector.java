@@ -22,7 +22,6 @@ public class BooleanFieldProjector implements QueryHandler<BooleanFieldConfigura
     @EventHandler
     private void on(BooleanFieldConfigured event) {
         screen.save(new BooleanFieldConfigurationDto(
-                event.getGuid(),
                 event.getName(),
                 event.getLabel(),
                 event.getHintText()));

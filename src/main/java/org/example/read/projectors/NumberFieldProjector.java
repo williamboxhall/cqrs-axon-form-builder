@@ -22,7 +22,6 @@ public class NumberFieldProjector implements QueryHandler<NumberFieldConfigurati
     @EventHandler
     private void on(NumberFieldConfigured event) {
         screen.save(new NumberFieldConfigurationDto(
-                event.getGuid(),
                 event.getName(),
                 event.getLabel(),
                 event.getHintText(),

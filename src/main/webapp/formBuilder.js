@@ -4,7 +4,6 @@ function FormBuilderCtrl($scope, $http) {
 
 	$scope.configureNumber = function () {
 		$http.post('cqrs/perform/ConfigureNumberField', {
-			"guid":$scope.fields.length,
 			"name":"distance" + $scope.fields.length,
 			"label":"Distance",
 			"hintText":"Distance to home in metres",
@@ -16,7 +15,6 @@ function FormBuilderCtrl($scope, $http) {
 
 	$scope.configureBoolean = function () {
 		$http.post('cqrs/perform/ConfigureBooleanField', {
-			"guid":$scope.fields.length,
 			"name":"confirm" + $scope.fields.length,
 			"label":"Confirm",
 			"hintText":"Tick to confirm"
@@ -27,7 +25,6 @@ function FormBuilderCtrl($scope, $http) {
 
 	$scope.configureSingleLineText = function () {
 		$http.post('cqrs/perform/ConfigureTextField', {
-			"guid":$scope.fields.length,
 			"name":"nickname" + $scope.fields.length,
 			"label":"Nickname",
 			"hintText":"Your nickname 3-6 letters.",

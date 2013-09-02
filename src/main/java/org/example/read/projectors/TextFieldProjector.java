@@ -22,7 +22,6 @@ public class TextFieldProjector implements QueryHandler<TextFieldConfigurationDt
     @EventHandler
     private void on(TextFieldConfigured event) {
         screen.save(new TextFieldConfigurationDto(
-                event.getGuid(),
                 event.getName(),
                 event.getLabel(),
                 event.getHintText(),

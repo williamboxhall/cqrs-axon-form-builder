@@ -9,20 +9,20 @@ import org.example.write.commands.ConfigureNumberField;
 
 public class NumberField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
-    private String guid;
+    private String name;
 
     private NumberField() {
     }
 
     @EventHandler
     private void on(NumberFieldConfigured event) {
-        this.guid = event.getGuid();
+        this.name = event.getName();
     }
 
     @CommandHandler
     public NumberField(ConfigureNumberField command) {
         UnitOfMeasure unitOfMeasure = command.getUnitOfMeasure();
-        apply(new NumberFieldConfigured(command.getGuid(), command.getName(), command.getLabel(), command.getHintText(),
+        apply(new NumberFieldConfigured(command.getName(), command.getLabel(), command.getHintText(),
                 unitOfMeasure.getQuantity(), unitOfMeasure.getName(), unitOfMeasure.getSymbol()));
     }
 }

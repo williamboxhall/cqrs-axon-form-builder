@@ -9,19 +9,19 @@ import org.example.write.commands.ConfigureTextField;
 
 public class TextField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
-    private String guid;
+    private String name;
 
     private TextField() {
     }
 
     @EventHandler
     private void on(TextFieldConfigured event) {
-        this.guid = event.getGuid();
+        this.name = event.getName();
     }
 
     @CommandHandler
     public TextField(ConfigureTextField command) {
-        apply(new TextFieldConfigured(command.getGuid(), command.getName(), command.getLabel(), command.getHintText(),
+        apply(new TextFieldConfigured(command.getName(), command.getLabel(), command.getHintText(),
                 command.getMinLength(), command.getMaxLength()));
     }
 }

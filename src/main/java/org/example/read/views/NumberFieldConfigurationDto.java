@@ -11,9 +11,9 @@ public class NumberFieldConfigurationDto extends FieldConfigurationDto {
     public NumberFieldConfigurationDto() {
     }
 
-    public NumberFieldConfigurationDto(String guid, String name, String label, String hintText,
+    public NumberFieldConfigurationDto(String name, String label, String hintText,
                                        String unitQuantity, String unitName, String unitSymbol) {
-        super(guid, name, label, hintText, "number");
+        super(name, label, hintText, "number");
         this.unitQuantity = unitQuantity;
         this.unitName = unitName;
         this.unitSymbol = unitSymbol;

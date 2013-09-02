@@ -9,18 +9,18 @@ import org.example.write.commands.ConfigureBooleanField;
 
 public class BooleanField extends AbstractAnnotatedAggregateRoot<String> {
     @AggregateIdentifier
-    private String guid;
+    private String name;
 
     private BooleanField() {
     }
 
     @EventHandler
     private void on(BooleanFieldConfigured event) {
-        this.guid = event.getGuid();
+        this.name = event.getName();
     }
 
     @CommandHandler
     public BooleanField(ConfigureBooleanField command) {
-        apply(new BooleanFieldConfigured(command.getGuid(), command.getName(), command.getLabel(), command.getHintText()));
+        apply(new BooleanFieldConfigured(command.getName(), command.getLabel(), command.getHintText()));
     }
 }

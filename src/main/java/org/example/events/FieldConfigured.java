@@ -1,20 +1,14 @@
 package org.example.events;
 
 public abstract class FieldConfigured {
-    private final String guid;
     private final String name;
     private final String label;
     private final String hintText;
 
-    public FieldConfigured(String guid, String name, String label, String hintText) {
-        this.guid = guid;
+    public FieldConfigured(String name, String label, String hintText) {
         this.name = name;
         this.label = label;
         this.hintText = hintText;
-    }
-
-    public String getGuid() {
-        return guid;
     }
 
     public String getName() {

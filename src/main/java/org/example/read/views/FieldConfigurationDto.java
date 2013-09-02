@@ -12,7 +12,6 @@ import org.hibernate.annotations.AccessType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class FieldConfigurationDto {
     @Id
-    private String guid;
     private String name;
     private String label;
     private String hintText;
@@ -21,16 +20,11 @@ public abstract class FieldConfigurationDto {
     public FieldConfigurationDto() {
     }
 
-    public FieldConfigurationDto(String guid, String name, String label, String hintText, String type) {
-        this.guid = guid;
+    public FieldConfigurationDto(String name, String label, String hintText, String type) {
         this.name = name;
         this.label = label;
         this.hintText = hintText;
         this.type = type;
-    }
-
-    public String getGuid() {
-        return guid;
     }
 
     public String getName() {
@@ -51,6 +45,6 @@ public abstract class FieldConfigurationDto {
 
     @Override
     public String toString() {
-        return guid;
+        return name;
     }
 }

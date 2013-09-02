@@ -7,21 +7,11 @@ import org.hibernate.validator.constraints.NotBlank;
 public class ConfigureField implements Command {
     @TargetAggregateIdentifier
     @NotBlank
-    private String guid;
-    @NotBlank
     private String name;
     @NotBlank
     private String label;
     @NotBlank
     private String hintText;
-
-    public String getGuid() {
-        return guid;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
-    }
 
     public String getName() {
         return name;
