@@ -7,7 +7,7 @@ import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.example.events.TextFieldConfigured;
 import org.example.write.commands.ConfigureTextField;
 
-public class TextField extends AbstractAnnotatedAggregateRoot<String> {
+public class TextField extends Field {
     @AggregateIdentifier
     private String name;
 
@@ -23,5 +23,10 @@ public class TextField extends AbstractAnnotatedAggregateRoot<String> {
     public TextField(ConfigureTextField command) {
         apply(new TextFieldConfigured(command.getName(), command.getLabel(), command.getHintText(),
                 command.getMinLength(), command.getMaxLength()));
+    }
+
+    @Override
+    boolean isValid(String value) {
+        return false;
     }
 }

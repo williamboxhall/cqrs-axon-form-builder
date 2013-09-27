@@ -1,7 +1,11 @@
 package org.example.eventsourcing.infrastructure;
 
+import static org.axonframework.common.ReflectionUtils.ensureAccessible;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+
+import org.example.write.domain.Field;
 
 // TODO existing library for this?
 public class Reflections {
@@ -17,5 +21,13 @@ public class Reflections {
         }
 
         return null;
+    }
+
+    public static Field newInstanceOf(Class<? extends Field> type) {
+        try {
+            return ensureAccessible(type.getDeclaredConstructor()).newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

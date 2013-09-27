@@ -7,7 +7,7 @@ import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.example.events.BooleanFieldConfigured;
 import org.example.write.commands.ConfigureBooleanField;
 
-public class BooleanField extends AbstractAnnotatedAggregateRoot<String> {
+public class BooleanField extends Field {
     @AggregateIdentifier
     private String name;
 
@@ -22,5 +22,10 @@ public class BooleanField extends AbstractAnnotatedAggregateRoot<String> {
     @CommandHandler
     public BooleanField(ConfigureBooleanField command) {
         apply(new BooleanFieldConfigured(command.getName(), command.getLabel(), command.getHintText()));
+    }
+
+    @Override
+    boolean isValid(String value) {
+        return false;
     }
 }

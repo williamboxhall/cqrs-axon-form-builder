@@ -41,28 +41,24 @@
         </bean>
     </axon:cluster>
 
-    <axon:event-sourcing-repository id="booleanFieldRepository"
-                                    aggregate-type="org.example.write.domain.BooleanField"/>
+    <bean id="fieldRepository" class="org.axonframework.eventsourcing.EventSourcingRepository">
+        <constructor-arg ref="fieldFactory"/>
+        <constructor-arg ref="eventStore"/>
+    </bean>
 
     <axon:aggregate-command-handler id="booleanFieldHandler"
                                     aggregate-type="org.example.write.domain.BooleanField"
-                                    repository="booleanFieldRepository"
+                                    repository="fieldRepository"
                                     command-bus="commandBus"/>
-
-    <axon:event-sourcing-repository id="textFieldRepository"
-                                    aggregate-type="org.example.write.domain.TextField"/>
 
     <axon:aggregate-command-handler id="textFieldHandler"
                                     aggregate-type="org.example.write.domain.TextField"
-                                    repository="textFieldRepository"
+                                    repository="fieldRepository"
                                     command-bus="commandBus"/>
-
-    <axon:event-sourcing-repository id="numberFieldRepository"
-                                    aggregate-type="org.example.write.domain.NumberField"/>
 
     <axon:aggregate-command-handler id="numberFieldHandler"
                                     aggregate-type="org.example.write.domain.NumberField"
-                                    repository="numberFieldRepository"
+                                    repository="fieldRepository"
                                     command-bus="commandBus"/>
 
     <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
