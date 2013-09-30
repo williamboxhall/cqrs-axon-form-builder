@@ -8,6 +8,14 @@ public class ConfigureNumberField extends ConfigureField {
     @NotNull
     private UnitOfMeasure unitOfMeasure;
 
+    public ConfigureNumberField() {
+    }
+
+    public ConfigureNumberField(String name, String label, String hintText, UnitOfMeasure unitOfMeasure) {
+        super(name, label, hintText);
+        this.unitOfMeasure = unitOfMeasure;
+    }
+
     public UnitOfMeasure getUnitOfMeasure() {
         return unitOfMeasure;
     }

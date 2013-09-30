@@ -41,7 +41,7 @@
         </bean>
     </axon:cluster>
 
-    <bean id="fieldRepository" class="org.axonframework.eventsourcing.EventSourcingRepository">
+    <bean id="fieldRepository" class="org.example.write.domain.FieldRepository">
         <constructor-arg ref="fieldFactory"/>
         <constructor-arg ref="eventStore"/>
     </bean>

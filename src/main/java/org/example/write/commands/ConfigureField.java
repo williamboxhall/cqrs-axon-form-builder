@@ -13,6 +13,15 @@ public class ConfigureField implements Command {
     @NotBlank
     private String hintText;
 
+    public ConfigureField() {
+    }
+
+    public ConfigureField(String name, String label, String hintText) {
+        this.name = name;
+        this.label = label;
+        this.hintText = hintText;
+    }
+
     public String getName() {
         return name;
     }

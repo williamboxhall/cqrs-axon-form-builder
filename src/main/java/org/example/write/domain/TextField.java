@@ -1,5 +1,8 @@
 package org.example.write.domain;
 
+import static com.google.common.base.Strings.nullToEmpty;
+
+import com.google.common.base.Strings;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
@@ -10,6 +13,8 @@ import org.example.write.commands.ConfigureTextField;
 public class TextField extends Field {
     @AggregateIdentifier
     private String name;
+    private int minLength;
+    private int maxLength;
 
     private TextField() {
     }
@@ -17,6 +22,8 @@ public class TextField extends Field {
     @EventHandler
     private void on(TextFieldConfigured event) {
         this.name = event.getName();
+        this.minLength = event.getMinLength();
+        this.maxLength = event.getMaxLength();
     }
 
     @CommandHandler
@@ -27,6 +34,7 @@ public class TextField extends Field {
 
     @Override
     boolean isValid(String value) {
-        return false;
+        int length = nullToEmpty(value).trim().length();
+        return length >= minLength && length <= maxLength;
     }
 }
