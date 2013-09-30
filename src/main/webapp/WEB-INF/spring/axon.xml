@@ -61,6 +61,14 @@
                                     repository="fieldRepository"
                                     command-bus="commandBus"/>
 
+    <axon:event-sourcing-repository id="formSubmissionRepository"
+                                    aggregate-type="org.example.write.domain.FormSubmission"/>
+
+    <axon:aggregate-command-handler id="formSubmissionHandler"
+                                    aggregate-type="org.example.write.domain.FormSubmission"
+                                    repository="formSubmissionRepository"
+                                    command-bus="commandBus"/>
+
     <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
         <property name="commandBus" ref="commandBus"/>
     </bean>
