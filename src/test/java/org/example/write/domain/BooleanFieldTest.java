@@ -3,6 +3,7 @@ package org.example.write.domain;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.fail;
 
 import org.example.write.commands.ConfigureBooleanField;
 import org.junit.Before;
@@ -48,4 +49,9 @@ public class BooleanFieldTest {
     public void invalidForStringValue() {
         assertThat(booleanField.isValid("foo"), is(false));
     }
+
+	@Test
+	public void alwaysFails() {
+		fail("testing failed test reporting");
+	}
 }
