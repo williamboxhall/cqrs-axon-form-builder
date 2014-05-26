@@ -14,6 +14,7 @@ OR
 
 Point your browser at localhost:8080 and have a play.
 
+RESTful Resources:
 ```
 curl -X POST -H "Content-Type: application/json" -d '{ "hintText": "First name of person", "label": "First name", "name": "firstName", "minLength": 1, "maxLength": 5 }' http://localhost:8080/cqrs/perform/ConfigureTextField
 curl -X GET http://localhost:8080/cqrs/view/TextFieldConfiguration?guid=firstName
