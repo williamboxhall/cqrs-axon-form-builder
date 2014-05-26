@@ -49,9 +49,4 @@ public class BooleanFieldTest {
     public void invalidForStringValue() {
         assertThat(booleanField.isValid("foo"), is(false));
     }
-
-	@Test
-	public void alwaysFails() {
-		fail("testing failed test reporting");
-	}
 }
