@@ -42,7 +42,6 @@ function FormBuilderCtrl($scope, $http) {
     };
 
     $scope.submit = function () {
-        debugger;
         $http.post('cqrs/perform/SubmitForm', $scope.submissions)
             .success(function () {
                 alert("Success!");
