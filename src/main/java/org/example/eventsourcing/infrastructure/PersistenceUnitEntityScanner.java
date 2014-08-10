@@ -23,17 +23,11 @@ import org.springframework.orm.jpa.persistenceunit.MutablePersistenceUnitInfo;
 import org.springframework.orm.jpa.persistenceunit.PersistenceUnitPostProcessor;
 import org.springframework.util.ClassUtils;
 
-public class PersistenceUnitEntityScanner implements ApplicationContextAware,
-        PersistenceUnitPostProcessor {
-
+public class PersistenceUnitEntityScanner implements ApplicationContextAware, PersistenceUnitPostProcessor {
     private static final String RESOURCE_PATTERN = "**/*.class";
-
     private ApplicationContext applicationContext;
-
     private String[] packagesToScan;
-
     private ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-
     private TypeFilter[] entityTypeFilters = new TypeFilter[]{
             new AnnotationTypeFilter(Entity.class, false),
             new AnnotationTypeFilter(Embeddable.class, false),
@@ -42,22 +36,15 @@ public class PersistenceUnitEntityScanner implements ApplicationContextAware,
     @Override
     public void setApplicationContext(ApplicationContext applicationContext)
             throws BeansException {
-
         this.applicationContext = applicationContext;
-
     }
 
     @Override
     public void postProcessPersistenceUnitInfo(MutablePersistenceUnitInfo pui) {
-
         String[] entities = scanPackages();
-
         for (String entity : entities) {
-
             pui.addManagedClassName(entity);
-
         }
-
     }
 
     /**
@@ -72,11 +59,8 @@ public class PersistenceUnitEntityScanner implements ApplicationContextAware,
      * Spring's component-scan feature
      * (org.springframework.context.annotation.ClassPathBeanDefinitionScanner}).
      */
-
     public void setPackagesToScan(String[] packagesToScan) {
-
         this.packagesToScan = packagesToScan;
-
     }
 
     /**
@@ -84,61 +68,31 @@ public class PersistenceUnitEntityScanner implements ApplicationContextAware,
      *
      * @see #setPackagesToScan
      */
-
     protected String[] scanPackages() {
-
         Set<String> entities = new HashSet<String>();
-
         if (this.packagesToScan != null) {
-
             try {
-
                 for (String pkg : this.packagesToScan) {
-
                     String pattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
-
                             + ClassUtils.convertClassNameToResourcePath(pkg)
                             + RESOURCE_PATTERN;
-
-                    Resource[] resources = this.resourcePatternResolver
-                            .getResources(pattern);
-
-                    MetadataReaderFactory readerFactory = new CachingMetadataReaderFactory(
-                            this.resourcePatternResolver);
-
+                    Resource[] resources = this.resourcePatternResolver.getResources(pattern);
+                    MetadataReaderFactory readerFactory = new CachingMetadataReaderFactory(this.resourcePatternResolver);
                     for (Resource resource : resources) {
-
                         if (resource.isReadable()) {
-
-                            MetadataReader reader = readerFactory
-                                    .getMetadataReader(resource);
-
-                            String className = reader.getClassMetadata()
-                                    .getClassName();
-
+                            MetadataReader reader = readerFactory.getMetadataReader(resource);
+                            String className = reader.getClassMetadata().getClassName();
                             if (matchesFilter(reader, readerFactory)) {
-
                                 entities.add(className);
-
                             }
-
                         }
-
                     }
-
                 }
-
             } catch (IOException ex) {
-
-                throw new MappingException(
-                        "Failed to scan classpath for unlisted classes", ex);
-
+                throw new MappingException("Failed to scan classpath for unlisted classes", ex);
             }
-
         }
-
         return entities.toArray(new String[entities.size()]);
-
     }
 
     /**
@@ -147,26 +101,16 @@ public class PersistenceUnitEntityScanner implements ApplicationContextAware,
      * <p/>
      * reader.
      */
-
     private boolean matchesFilter(MetadataReader reader,
                                   MetadataReaderFactory readerFactory) throws IOException {
-
         if (this.entityTypeFilters != null) {
-
             for (TypeFilter filter : this.entityTypeFilters) {
-
                 if (filter.match(reader, readerFactory)) {
-
                     return true;
-
                 }
-
             }
-
         }
-
         return false;
-
     }
 }
     

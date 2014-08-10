@@ -41,37 +41,17 @@
         </bean>
     </axon:cluster>
 
-    <axon:event-sourcing-repository id="booleanFieldRepository"
-                                    aggregate-type="org.example.write.domain.BooleanField"/>
-
-    <axon:event-sourcing-repository id="numberFieldRepository"
-                                    aggregate-type="org.example.write.domain.NumberField"/>
-
-    <axon:event-sourcing-repository id="textFieldRepository"
-                                    aggregate-type="org.example.write.domain.TextField"/>
-
-    <axon:aggregate-command-handler id="booleanFieldHandler"
-                                    aggregate-type="org.example.write.domain.BooleanField"
-                                    repository="booleanFieldRepository"
-                                    command-bus="commandBus"/>
-
-    <axon:aggregate-command-handler id="textFieldHandler"
-                                    aggregate-type="org.example.write.domain.TextField"
-                                    repository="textFieldRepository"
-                                    command-bus="commandBus"/>
-
-    <axon:aggregate-command-handler id="numberFieldHandler"
-                                    aggregate-type="org.example.write.domain.NumberField"
-                                    repository="numberFieldRepository"
-                                    command-bus="commandBus"/>
-
-    <axon:event-sourcing-repository id="formSubmissionRepository"
-                                    aggregate-type="org.example.write.domain.FormSubmission"/>
-
-    <axon:aggregate-command-handler id="formSubmissionHandler"
-                                    aggregate-type="org.example.write.domain.FormSubmission"
-                                    repository="formSubmissionRepository"
-                                    command-bus="commandBus"/>
+    <bean id="commandHandlerAnnotatedAggregateRootScanner "
+          class="org.example.eventsourcing.infrastructure.CommandHandlerAnnotatedAggregateRootScanner">
+        <property name="eventStore" ref="eventStore"/>
+        <property name="commandBus" ref="commandBus"/>
+        <property name="eventBus" ref="eventBus"/>
+        <property name="packagesToScan">
+            <list>
+                <value>org.example.write.domain</value>
+            </list>
+        </property>
+    </bean>
 
     <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
         <property name="commandBus" ref="commandBus"/>
