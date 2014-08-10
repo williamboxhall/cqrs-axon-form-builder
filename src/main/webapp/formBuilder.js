@@ -49,7 +49,7 @@ function FormBuilderCtrl($scope, $http) {
             .error(function () {
                 alert("Failed!");
             });
-    }
+    };
 
     $scope.refresh();
 }
