@@ -2,11 +2,9 @@ package org.example.write.domain;
 
 import static com.google.common.base.Strings.nullToEmpty;
 
-import com.google.common.base.Strings;
 import org.axonframework.commandhandling.annotation.CommandHandler;
-import org.axonframework.eventhandling.annotation.EventHandler;
-import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
+import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
 import org.example.events.TextFieldConfigured;
 import org.example.write.commands.ConfigureTextField;
 
@@ -19,7 +17,7 @@ public class TextField extends Field {
     private TextField() {
     }
 
-    @EventHandler
+	@EventSourcingHandler
     private void on(TextFieldConfigured event) {
         this.name = event.getName();
         this.minLength = event.getMinLength();

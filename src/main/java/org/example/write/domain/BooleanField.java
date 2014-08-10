@@ -1,8 +1,8 @@
 package org.example.write.domain;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
-import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
+import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
 import org.example.events.BooleanFieldConfigured;
 import org.example.write.commands.ConfigureBooleanField;
 
@@ -13,7 +13,7 @@ public class BooleanField extends Field {
     private BooleanField() {
     }
 
-    @EventHandler
+    @EventSourcingHandler
     private void on(BooleanFieldConfigured event) {
         this.name = event.getName();
     }

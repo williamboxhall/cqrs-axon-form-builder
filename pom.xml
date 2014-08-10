@@ -13,7 +13,7 @@
         <jetty.version>7.2.0.v20101020</jetty.version>
         <spring.version>3.2.3.RELEASE</spring.version>
         <hibernate.version>3.6.10.Final</hibernate.version>
-        <axon.version>2.0.5</axon.version>
+        <axon.version>2.3</axon.version>
     </properties>
 
     <dependencies>

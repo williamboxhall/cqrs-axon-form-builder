@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
-import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
+import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
 import org.example.events.FormSubmitted;
 import org.example.write.commands.SubmitForm;
 
@@ -20,7 +20,7 @@ public class FormSubmission extends AbstractAnnotatedAggregateRoot<UUID> {
     private FormSubmission() {
     }
 
-    @EventHandler
+	@EventSourcingHandler
     private void on(FormSubmitted event) {
         this.guid = event.getGuid();
     }
