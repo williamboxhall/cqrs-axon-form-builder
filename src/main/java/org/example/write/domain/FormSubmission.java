@@ -1,9 +1,7 @@
 package org.example.write.domain;
 
-import static java.lang.String.format;
 import static java.util.UUID.randomUUID;
 
-import java.util.Map;
 import java.util.UUID;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
@@ -26,14 +24,8 @@ public class FormSubmission extends AbstractAnnotatedAggregateRoot<UUID> {
     }
 
     @CommandHandler
-    public FormSubmission(SubmitForm command, FieldRepository fieldRepository) {
-        for (Map.Entry<String, String> fieldSubmission : command.entrySet()) {
-            Field field = fieldRepository.load(fieldSubmission.getKey());
-            if (!field.isValid(fieldSubmission.getValue())) {
-                throw new RuntimeException(format("Value %s for field with identifier %s is invalid",
-                        fieldSubmission.getValue(), fieldSubmission.getKey()));
-            }
-        }
+    public FormSubmission(SubmitForm command) {
+		// TODO validate
         apply(new FormSubmitted(randomUUID(), command));
     }
 }
